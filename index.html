@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivam Bhatt — Full-Stack & Shopify Developer</title>
+<title>Shivam Bhatt — Shopify & WordPress Developer</title>
+<meta name="description" content="Shivam Bhatt — Shopify & WordPress Developer based in Ahmedabad. 4+ years building custom themes, CRO landing pages, WooCommerce stores and Magento 2 modules.">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -213,13 +214,14 @@
   .hero-title span { color: var(--accent3); }
 
   .hero-desc {
-    max-width: 500px;
+    max-width: 540px;
     line-height: 1.8;
     color: var(--muted);
     font-size: 0.85rem;
     margin-bottom: 3rem;
     animation: slide-up 0.8s ease 0.3s both;
   }
+  .hero-desc strong { color: var(--text); font-weight: 700; }
 
   .hero-cta {
     display: flex; gap: 1rem; flex-wrap: wrap;
@@ -421,6 +423,7 @@
     margin-bottom: 0.2rem;
   }
   .timeline-company { font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
+  .timeline-company b { color: var(--text); font-weight: 700; }
   .timeline-points { list-style: none; }
   .timeline-points li {
     font-size: 0.8rem;
@@ -475,13 +478,22 @@
     transition: transform 0.4s;
   }
   .project-card:hover::after { transform: scaleX(1); }
+  .project-top { display: flex; align-items: baseline; justify-content: space-between; }
   .project-num {
     font-family: 'Syne', sans-serif;
     font-size: 3rem;
     font-weight: 900;
-    color: rgba(124,58,237,0.1);
+    color: rgba(124,58,237,0.12);
     line-height: 1;
     margin-bottom: 0.5rem;
+  }
+  .project-platform {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid rgba(6,182,212,0.25);
+    padding: 0.2rem 0.55rem;
   }
   .project-name {
     font-family: 'Syne', sans-serif;
@@ -579,8 +591,8 @@
   .terminal-dot.yellow { background: #febc2e; }
   .terminal-dot.green { background: #28c840; }
   .terminal-title { margin-left: auto; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
-  .terminal-body { padding: 1.5rem; }
-  .terminal-line { font-size: 0.75rem; line-height: 2; }
+  .terminal-body { padding: 1.5rem; overflow-x: auto; }
+  .terminal-line { font-size: 0.75rem; line-height: 2; white-space: nowrap; }
   .t-prompt { color: var(--accent); }
   .t-cmd { color: var(--accent2); }
   .t-str { color: #f59e0b; }
@@ -594,17 +606,13 @@
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
   }
-  .typing {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: none;
-  }
 
   /* ─── FOOTER ─── */
   footer {
     padding: 2rem 3rem;
     border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; flex-wrap: wrap;
     position: relative; z-index: 1;
   }
   .footer-name {
@@ -644,19 +652,9 @@
     60%{ transform: translate(0, 1px); }
   }
 
-  /* Gradient border card */
-  .grad-border {
-    position: relative;
-    padding: 1px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-  }
-  .grad-border-inner {
-    background: var(--card);
-    padding: 2rem;
-    height: 100%;
-  }
-
   @media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     .hero { padding: 6rem 1.5rem 3rem; }
@@ -679,7 +677,7 @@
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#projects">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-badge">
@@ -695,7 +693,7 @@
   <div class="orb orb-3"></div>
 
   <div class="hero-eyebrow">
-    <span>Full-Stack Developer · Ahmedabad, IN</span>
+    <span>Shopify &amp; WordPress Developer · Ahmedabad, IN</span>
   </div>
 
   <h1 class="hero-name">
@@ -704,17 +702,18 @@
   </h1>
 
   <p class="hero-title">
-    Shopify · WordPress · <span>React · Full-Stack</span>
+    Shopify · WordPress · <span>WooCommerce · Liquid</span>
   </p>
 
   <p class="hero-desc">
-    Crafting pixel-perfect e-commerce experiences and dynamic web applications. 
-    Specializing in Shopify customizations, WordPress development, and modern React frontends.
+    I build and customize <strong>Shopify</strong> and <strong>WordPress</strong> stores that
+    convert — custom Liquid themes, CRO landing pages, ACF-driven sites, and WooCommerce builds.
+    <strong>4+ years</strong> turning designs into fast, maintainable e-commerce.
   </p>
 
   <div class="hero-cta">
     <a href="#contact" class="btn-primary">↗ Let's Work Together</a>
-    <a href="https://github.com/shivambhatt15" target="_blank" class="btn-outline">⌘ GitHub Profile</a>
+    <a href="https://github.com/shivambhatt15" target="_blank" rel="noopener" class="btn-outline">⌘ GitHub Profile</a>
   </div>
 
   <div class="scroll-hint">
@@ -734,12 +733,12 @@
     <span class="stat-label">Companies</span>
   </div>
   <div class="stat">
-    <span class="stat-num">20+</span>
-    <span class="stat-label">GitHub Repos</span>
+    <span class="stat-num">Shopify</span>
+    <span class="stat-label">Liquid &amp; Theme Dev</span>
   </div>
   <div class="stat">
-    <span class="stat-num">∞</span>
-    <span class="stat-label">Lines of Code</span>
+    <span class="stat-num">WordPress</span>
+    <span class="stat-label">ACF &amp; WooCommerce</span>
   </div>
   <div class="stat">
     <span class="stat-num">MCA</span>
@@ -751,34 +750,34 @@
 <div class="marquee-section">
   <div class="marquee-track" id="marquee">
     <div class="marquee-item"><span>⬡</span> Shopify</div>
+    <div class="marquee-item"><span>⬡</span> Liquid</div>
     <div class="marquee-item"><span>⬡</span> WordPress</div>
-    <div class="marquee-item"><span>⬡</span> React JS</div>
+    <div class="marquee-item"><span>⬡</span> WooCommerce</div>
+    <div class="marquee-item"><span>⬡</span> ACF</div>
+    <div class="marquee-item"><span>⬡</span> PHP</div>
     <div class="marquee-item"><span>⬡</span> JavaScript</div>
     <div class="marquee-item"><span>⬡</span> HTML5 / CSS3</div>
     <div class="marquee-item"><span>⬡</span> Bootstrap 5</div>
-    <div class="marquee-item"><span>⬡</span> PHP</div>
-    <div class="marquee-item"><span>⬡</span> MySQL</div>
-    <div class="marquee-item"><span>⬡</span> Firebase</div>
-    <div class="marquee-item"><span>⬡</span> Redux</div>
     <div class="marquee-item"><span>⬡</span> Magento 2</div>
+    <div class="marquee-item"><span>⬡</span> MySQL</div>
+    <div class="marquee-item"><span>⬡</span> React JS</div>
     <div class="marquee-item"><span>⬡</span> Figma</div>
     <div class="marquee-item"><span>⬡</span> Git / GitHub</div>
-    <div class="marquee-item"><span>⬡</span> REST API</div>
     <!-- Duplicate for seamless loop -->
     <div class="marquee-item"><span>⬡</span> Shopify</div>
+    <div class="marquee-item"><span>⬡</span> Liquid</div>
     <div class="marquee-item"><span>⬡</span> WordPress</div>
-    <div class="marquee-item"><span>⬡</span> React JS</div>
+    <div class="marquee-item"><span>⬡</span> WooCommerce</div>
+    <div class="marquee-item"><span>⬡</span> ACF</div>
+    <div class="marquee-item"><span>⬡</span> PHP</div>
     <div class="marquee-item"><span>⬡</span> JavaScript</div>
     <div class="marquee-item"><span>⬡</span> HTML5 / CSS3</div>
     <div class="marquee-item"><span>⬡</span> Bootstrap 5</div>
-    <div class="marquee-item"><span>⬡</span> PHP</div>
-    <div class="marquee-item"><span>⬡</span> MySQL</div>
-    <div class="marquee-item"><span>⬡</span> Firebase</div>
-    <div class="marquee-item"><span>⬡</span> Redux</div>
     <div class="marquee-item"><span>⬡</span> Magento 2</div>
+    <div class="marquee-item"><span>⬡</span> MySQL</div>
+    <div class="marquee-item"><span>⬡</span> React JS</div>
     <div class="marquee-item"><span>⬡</span> Figma</div>
     <div class="marquee-item"><span>⬡</span> Git / GitHub</div>
-    <div class="marquee-item"><span>⬡</span> REST API</div>
   </div>
 </div>
 
@@ -793,45 +792,45 @@
     <div class="skill-card reveal">
       <div class="skill-icon">🛍️</div>
       <div class="skill-name">Shopify Development</div>
-      <div class="skill-desc">Building and customizing Shopify stores from scratch. Custom themes, Liquid templating, app integrations, and conversion optimization.</div>
+      <div class="skill-desc">Custom Liquid themes built from scratch and Online Store 2.0 sections. Metafields, app integrations, checkout/cart tweaks, and CRO-focused landing pages.</div>
       <div class="skill-tags">
         <span class="tag">Liquid</span>
-        <span class="tag">Theme Dev</span>
-        <span class="tag amber">Custom Apps</span>
-        <span class="tag amber">E-Commerce</span>
+        <span class="tag">OS 2.0 Sections</span>
+        <span class="tag amber">Metafields</span>
+        <span class="tag amber">CRO</span>
       </div>
     </div>
     <div class="skill-card reveal" style="transition-delay:0.1s">
       <div class="skill-icon">🌐</div>
       <div class="skill-name">WordPress Development</div>
-      <div class="skill-desc">Custom themes, plugin development, performance optimization, and complete WordPress solutions for clients.</div>
+      <div class="skill-desc">Custom themes and child themes, ACF flexible content layouts, plugin tweaks, and WooCommerce stores wired up for real products and payments.</div>
       <div class="skill-tags">
-        <span class="tag cyan">Themes</span>
-        <span class="tag cyan">Plugins</span>
-        <span class="tag">PHP</span>
+        <span class="tag cyan">Custom Themes</span>
+        <span class="tag cyan">ACF</span>
         <span class="tag">WooCommerce</span>
+        <span class="tag">PHP</span>
       </div>
     </div>
     <div class="skill-card reveal" style="transition-delay:0.2s">
-      <div class="skill-icon">⚛️</div>
-      <div class="skill-name">React & Frontend</div>
-      <div class="skill-desc">Modern, responsive interfaces with React, Redux state management, and clean HTML5/CSS3/JS foundations.</div>
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">Performance &amp; CRO</div>
+      <div class="skill-desc">Faster Core Web Vitals through lazy loading, image optimization, and lean markup — plus conversion-driven layouts that turn traffic into orders.</div>
       <div class="skill-tags">
-        <span class="tag">React JS</span>
-        <span class="tag">Redux</span>
-        <span class="tag cyan">JS ES6+</span>
-        <span class="tag cyan">Bootstrap 5</span>
+        <span class="tag amber">Core Web Vitals</span>
+        <span class="tag amber">Speed</span>
+        <span class="tag cyan">Landing Pages</span>
+        <span class="tag cyan">A/B Layouts</span>
       </div>
     </div>
     <div class="skill-card reveal" style="transition-delay:0.3s">
       <div class="skill-icon">🗄️</div>
-      <div class="skill-name">Backend & Databases</div>
-      <div class="skill-desc">Full-stack capabilities with PHP, Java, SQL databases, Firebase, Magento 2 module development.</div>
+      <div class="skill-name">Backend &amp; Frontend</div>
+      <div class="skill-desc">PHP &amp; MySQL behind the stores, Magento 2 custom modules, and clean responsive frontends with JavaScript, Bootstrap and React when the job calls for it.</div>
       <div class="skill-tags">
-        <span class="tag amber">PHP</span>
-        <span class="tag amber">MySQL</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">Magento 2</span>
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL</span>
+        <span class="tag cyan">Magento 2</span>
+        <span class="tag cyan">React</span>
       </div>
     </div>
   </div>
@@ -846,78 +845,110 @@
   </div>
   <div class="timeline">
     <div class="timeline-item current reveal">
-      <div class="timeline-date">JUNE 2023 — PRESENT</div>
-      <div class="timeline-role">Full-Stack Developer <span class="current-badge">● CURRENT</span></div>
-      <div class="timeline-company">Zero Gravity Communications</div>
+      <div class="timeline-date">JUN 2023 — PRESENT · 3 YRS+</div>
+      <div class="timeline-role">Shopify Developer &amp; WordPress Developer <span class="current-badge">● CURRENT</span></div>
+      <div class="timeline-company"><b>Zero Gravity Communications</b> · Full-time · Ahmedabad, India</div>
       <ul class="timeline-points">
-        <li>Versatile full-stack development bridging design and functionality for dynamic web apps</li>
-        <li>WordPress development: custom themes, plugins, performance optimization</li>
-        <li>Shopify development: e-commerce stores, customizations, third-party app integrations</li>
+        <li>Build and customize Shopify stores — custom Liquid themes, OS 2.0 sections, metafields and third-party app integrations</li>
+        <li>Develop WordPress sites with custom themes, ACF layouts and WooCommerce, plus ongoing performance optimization</li>
+        <li>Convert Figma designs into pixel-perfect, responsive, conversion-focused storefronts and landing pages</li>
       </ul>
     </div>
     <div class="timeline-item reveal">
-      <div class="timeline-date">2023</div>
-      <div class="timeline-role">Front-End Developer</div>
-      <div class="timeline-company">Felix IT Systems</div>
+      <div class="timeline-date">JAN 2023 — JUN 2023 · 6 MOS</div>
+      <div class="timeline-role">JavaScript Developer</div>
+      <div class="timeline-company"><b>Felix-IT Systems</b> · Self-employed · Ahmedabad, India · On-site</div>
       <ul class="timeline-points">
-        <li>Created database tables and modules</li>
-        <li>Re-branding module development</li>
-        <li>Web design and UI implementation</li>
-        <li>Built E-Commerce Furniture Website, React Covid-19 Tracker, React Image Finder</li>
+        <li>Built interactive front-end features with JavaScript and React, focused on clean OOP structure and problem solving</li>
+        <li>Created database tables and modules, and worked on re-branding components</li>
+        <li>Handled UI implementation and web design from layout to working interface</li>
       </ul>
     </div>
     <div class="timeline-item reveal">
-      <div class="timeline-date">JAN — DEC 2022</div>
-      <div class="timeline-role">Backend Developer</div>
-      <div class="timeline-company">Magneto IT Solution Company</div>
+      <div class="timeline-date">JAN 2022 — DEC 2022 · 1 YR</div>
+      <div class="timeline-role">Internship Trainee</div>
+      <div class="timeline-company"><b>Magneto IT Solutions LLC</b> · Full-time · Ahmedabad, India · On-site</div>
       <ul class="timeline-points">
-        <li>10 months of Magento 2 backend development</li>
-        <li>Module development and re-branding modules</li>
-        <li>Database administration and website design</li>
-        <li>Figma layout to HTML conversion</li>
+        <li>Hands-on with Magento 2 — module development and re-branding modules</li>
+        <li>Front-end development and CSS, converting Figma layouts into responsive HTML</li>
+        <li>Supported database administration and website design tasks</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- WORK / PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
     <span class="section-num">03</span>
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title">What I Build</h2>
     <div class="section-line"></div>
   </div>
   <div class="projects-grid">
     <div class="project-card reveal">
-      <div class="project-num">01</div>
-      <div class="project-name">E-Commerce Furniture Website</div>
-      <div class="project-desc">Full-featured furniture e-commerce store with product catalog, cart functionality, and modern UI/UX design.</div>
+      <div class="project-top">
+        <div class="project-num">01</div>
+        <span class="project-platform">Shopify</span>
+      </div>
+      <div class="project-name">Custom Theme Development</div>
+      <div class="project-desc">Bespoke Shopify themes built in Liquid with reusable Online Store 2.0 sections, metafields and a clean, editable structure merchants can manage themselves.</div>
       <div class="project-tech">
-        <span class="tag">React</span><span class="tag cyan">CSS3</span><span class="tag">JS</span>
+        <span class="tag">Liquid</span><span class="tag cyan">OS 2.0</span><span class="tag">JS</span>
       </div>
     </div>
     <div class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-num">02</div>
-      <div class="project-name">React Covid-19 Tracker</div>
-      <div class="project-desc">Real-time pandemic data dashboard fetching live stats from a public API with country filtering and data visualization.</div>
+      <div class="project-top">
+        <div class="project-num">02</div>
+        <span class="project-platform">Shopify</span>
+      </div>
+      <div class="project-name">CRO Landing Pages</div>
+      <div class="project-desc">High-converting product and campaign landing pages — fast-loading, mobile-first layouts designed around clear offers, social proof and strong calls to action.</div>
       <div class="project-tech">
-        <span class="tag">React</span><span class="tag amber">API</span><span class="tag cyan">Charts</span>
+        <span class="tag">Liquid</span><span class="tag amber">CRO</span><span class="tag cyan">CSS3</span>
       </div>
     </div>
     <div class="project-card reveal" style="transition-delay:0.2s">
-      <div class="project-num">03</div>
-      <div class="project-name">React Image Finder</div>
-      <div class="project-desc">Image search application using the Pixabay API with dynamic filtering, lazy loading, and responsive gallery layout.</div>
+      <div class="project-top">
+        <div class="project-num">03</div>
+        <span class="project-platform">WordPress</span>
+      </div>
+      <div class="project-name">ACF Development</div>
+      <div class="project-desc">Custom WordPress themes powered by Advanced Custom Fields — flexible content blocks that let clients build and edit pages without touching code.</div>
       <div class="project-tech">
-        <span class="tag">React</span><span class="tag amber">Pixabay API</span><span class="tag">Redux</span>
+        <span class="tag cyan">ACF</span><span class="tag">PHP</span><span class="tag amber">Custom Themes</span>
       </div>
     </div>
     <div class="project-card reveal" style="transition-delay:0.3s">
-      <div class="project-num">04</div>
-      <div class="project-name">Online Library Management</div>
-      <div class="project-desc">Complete library system with PHP backend, documentation, database design, and full CRUD operations.</div>
+      <div class="project-top">
+        <div class="project-num">04</div>
+        <span class="project-platform">WooCommerce</span>
+      </div>
+      <div class="project-name">WooCommerce Stores</div>
+      <div class="project-desc">Full WordPress + WooCommerce stores — product setup, cart and checkout, payment gateways and the custom templates that make them feel on-brand.</div>
       <div class="project-tech">
-        <span class="tag cyan">PHP</span><span class="tag">MySQL</span><span class="tag amber">HTML5</span>
+        <span class="tag">WooCommerce</span><span class="tag cyan">WordPress</span><span class="tag">PHP</span>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.15s">
+      <div class="project-top">
+        <div class="project-num">05</div>
+        <span class="project-platform">Magento 2</span>
+      </div>
+      <div class="project-name">Custom Modules</div>
+      <div class="project-desc">Magento 2 custom module and re-branding work — extending store functionality and tailoring the admin and storefront to client requirements.</div>
+      <div class="project-tech">
+        <span class="tag cyan">Magento 2</span><span class="tag">PHP</span><span class="tag amber">MySQL</span>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay:0.25s">
+      <div class="project-top">
+        <div class="project-num">06</div>
+        <span class="project-platform">Optimization</span>
+      </div>
+      <div class="project-name">Performance Optimization</div>
+      <div class="project-desc">Speeding up existing Shopify and WordPress sites — lazy loading, image and asset optimization, lean markup and better Core Web Vitals scores.</div>
+      <div class="project-tech">
+        <span class="tag amber">Speed</span><span class="tag cyan">Core Web Vitals</span><span class="tag">Audits</span>
       </div>
     </div>
   </div>
@@ -943,12 +974,12 @@
       <div class="terminal-line"><span class="t-key">const</span> <span class="t-cmd">developer</span> = {</div>
       <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">name</span>: <span class="t-str">"Shivam Bhatt"</span>,</div>
       <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">location</span>: <span class="t-str">"Ahmedabad, Gujarat 🇮🇳"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">currentRole</span>: <span class="t-str">"Full-Stack Developer @ Zero Gravity"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">currentRole</span>: <span class="t-str">"Shopify &amp; WordPress Dev @ Zero Gravity"</span>,</div>
       <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">specialties</span>: [</div>
-      <div class="terminal-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Shopify"</span>, <span class="t-str">"WordPress"</span>, <span class="t-str">"React"</span>, <span class="t-str">"PHP"</span></div>
+      <div class="terminal-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Shopify / Liquid"</span>, <span class="t-str">"WordPress / ACF"</span>, <span class="t-str">"WooCommerce"</span></div>
       <div class="terminal-line">&nbsp;&nbsp;],</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">education</span>: <span class="t-str">"MCA — LJ University (Pursuing)"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">funFact</span>: <span class="t-str">"I am Funny 😄"</span>,</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">alsoKnows</span>: [<span class="t-str">"PHP"</span>, <span class="t-str">"Magento 2"</span>, <span class="t-str">"React"</span>, <span class="t-str">"MySQL"</span>],</div>
+      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">education</span>: <span class="t-str">"MCA — Computer Applications"</span>,</div>
       <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">openToWork</span>: <span class="t-val">true</span>,</div>
       <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">email</span>: <span class="t-str">"shivam.bhatt1512@gmail.com"</span></div>
       <div class="terminal-line">};</div>
@@ -969,10 +1000,10 @@
 <section id="contact">
   <div class="contact-grid">
     <div class="reveal">
-      <p class="contact-big">Let's Build<br><span>Something</span><br>Great.</p>
+      <p class="contact-big">Let's Build<br><span>Your Store.</span></p>
       <p class="contact-desc">
-        Available for freelance projects, full-time opportunities, and collaborations. 
-        Specializing in Shopify, WordPress, and React development.
+        Available for freelance projects, full-time roles and collaborations —
+        Shopify theme builds, WordPress &amp; WooCommerce sites, landing pages and store optimization.
       </p>
       <a href="mailto:shivam.bhatt1512@gmail.com" class="btn-primary" style="display:inline-flex">
         ✉ Send Email
@@ -987,28 +1018,28 @@
             shivam.bhatt1512@gmail.com
           </div>
         </a>
-        <a href="https://github.com/shivambhatt15" target="_blank" class="contact-link">
+        <a href="https://github.com/shivambhatt15" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-icon">⌘</span>
           <div>
             <span class="contact-link-label">GitHub</span>
             github.com/shivambhatt15
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/shivam-bhatt-1a36b621b/" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/shivambhatt1512/" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-icon">in</span>
           <div>
             <span class="contact-link-label">LinkedIn</span>
             linkedin.com/in/shivambhatt1512
           </div>
         </a>
-        <a href="https://twitter.com/shivam897739369" target="_blank" class="contact-link">
+        <a href="https://twitter.com/shivam897739369" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-icon">𝕏</span>
           <div>
             <span class="contact-link-label">Twitter / X</span>
             @shivam897739369
           </div>
         </a>
-        <a href="https://www.instagram.com/_shivam_1512" target="_blank" class="contact-link">
+        <a href="https://www.instagram.com/_shivam_1512" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-icon">◎</span>
           <div>
             <span class="contact-link-label">Instagram</span>
@@ -1019,7 +1050,7 @@
           <span class="contact-link-icon">📍</span>
           <div>
             <span class="contact-link-label">Location</span>
-            Venus Park Heights, Ahmedabad, Gujarat
+            Ahmedabad, Gujarat, India
           </div>
         </div>
       </div>
@@ -1030,8 +1061,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">SHIVAM BHATT</div>
-  <div class="footer-note">Designed & Built with ♥ · Ahmedabad 2024</div>
-  <div class="footer-note">Full-Stack · Shopify · WordPress · React</div>
+  <div class="footer-note">Designed &amp; Built with ♥ · Ahmedabad</div>
+  <div class="footer-note">Shopify · WordPress · WooCommerce · Liquid</div>
 </footer>
 
 <script>
@@ -1072,7 +1103,7 @@ document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el =>
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
@@ -1090,10 +1121,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Counter animation on stat nums
+// Counter animation on numeric stat nums
 function animateCounter(el, target, suffix = '') {
-  const isNum = !isNaN(parseInt(target));
-  if (!isNum) return;
   let current = 0;
   const end = parseInt(target);
   const step = end / 40;
@@ -1109,10 +1138,9 @@ const statObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const el = entry.target;
-      const text = el.textContent;
+      const text = el.textContent.trim();
       if (text === '4+') animateCounter(el, 4, '+');
       else if (text === '3') animateCounter(el, 3);
-      else if (text === '20+') animateCounter(el, 20, '+');
       statObserver.unobserve(el);
     }
   });
