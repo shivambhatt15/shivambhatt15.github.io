@@ -363,7 +363,7 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
 .foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 /* ───────── Toast & to-top ───────── */
-.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--ink);color:var(--bg);padding:.8rem 1.3rem;border-radius:999px;font-size:.92rem;z-index:300;transition:transform .45s var(--ease)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,calc(100% + 60px));background:var(--ink);color:var(--bg);padding:.8rem 1.3rem;border-radius:999px;font-size:.92rem;z-index:300;transition:transform .45s var(--ease)}
 .toast.show{transform:translate(-50%,0)}
 .to-top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-strong);display:grid;place-items:center;z-index:90;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .35s var(--ease)}
 .to-top.show{opacity:1;pointer-events:auto;transform:none}
@@ -851,16 +851,16 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
 
     <div class="planner">
       <form class="plan-form" id="planForm" onsubmit="return false">
-        <fieldset class="q">
-          <legend>Which platform?</legend>
-          <div class="opts" data-group="platform">
-            <label class="opt"><input type="radio" name="platform" value="Shopify"><span>Shopify</span></label>
-            <label class="opt"><input type="radio" name="platform" value="WordPress"><span>WordPress</span></label>
-            <label class="opt"><input type="radio" name="platform" value="WooCommerce"><span>WooCommerce</span></label>
-            <label class="opt"><input type="radio" name="platform" value="Magento 2"><span>Magento 2</span></label>
-            <label class="opt"><input type="radio" name="platform" value="Not sure yet"><span>Not sure yet</span></label>
-          </div>
-        </fieldset>
+<fieldset class="q">
+  <legend>Which platform?<small>Choose any</small></legend>
+  <div class="opts" data-group="platform">
+    <label class="opt"><input type="checkbox" name="platform" value="Shopify"><span>Shopify</span></label>
+    <label class="opt"><input type="checkbox" name="platform" value="WordPress"><span>WordPress</span></label>
+    <label class="opt"><input type="checkbox" name="platform" value="WooCommerce"><span>WooCommerce</span></label>
+    <label class="opt"><input type="checkbox" name="platform" value="Magento 2"><span>Magento 2</span></label>
+    <label class="opt"><input type="checkbox" name="platform" value="Not sure yet"><span>Not sure yet</span></label>
+  </div>
+</fieldset>
 
         <fieldset class="q">
           <legend>What do you need?<small>Choose any</small></legend>
@@ -1088,7 +1088,7 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
     return [
       'Hi Shivam,', '',
       'Here’s a quick brief for a project:', '',
-      `Platform: ${val('platform') || '-'}`,
+      `Platform: ${vals('platform').join(', ') || '-'}`,
       `Needs: ${vals('need').join(', ') || '-'}`,
       `Timeline: ${val('timeline') || '-'}`,
       `Designs: ${val('design') || '-'}`,
@@ -1099,8 +1099,9 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
   };
   const update = () => {
     fill('bPlatform', val('platform')); fill('bNeeds', vals('need').join(', '));
-    fill('bTimeline', val('timeline')); fill('bDesign', val('design'));
-    const subj = `Project enquiry${val('platform') ? ' – ' + val('platform') : ''}${$('#pName').value.trim() ? ' from ' + $('#pName').value.trim() : ''}`;
+        fill('bPlatform', vals('platform').join(', ')); fill('bNeeds', vals('need').join(', '));
+       const plats = vals('platform').join(', ');
+    const subj = `Project enquiry${plats ? ' – ' + plats : ''}${$('#pName').value.trim() ? ' from ' + $('#pName').value.trim() : ''}`;
     $('#sendBrief').href = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(buildBrief())}`;
         $('#sendGmail').href = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(buildBrief())}`;
   };
