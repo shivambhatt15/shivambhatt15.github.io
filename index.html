@@ -1,1056 +1,629 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-palette="mocha">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Shivam Bhatt — Shopify & WordPress Developer</title>
-<meta name="description" content="Shivam Bhatt — Shopify & WordPress Developer based in Ahmedabad. 4+ years building custom themes, CRO landing pages, WooCommerce stores and Magento 2 modules.">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800;900&display=swap" rel="stylesheet">
+<meta name="description" content="Shivam Bhatt builds custom Shopify themes, conversion-focused landing pages, ACF-powered WordPress sites and WooCommerce stores. 4+ years of e-commerce development, available for projects worldwide.">
+<meta property="og:title" content="Shivam Bhatt — Shopify & WordPress Developer">
+<meta property="og:description" content="Custom Shopify themes, CRO landing pages, WordPress and WooCommerce builds.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%233B2A22'/><text x='50%25' y='58%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='30' fill='%23EBD3A0'>SB</text></svg>">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --border: #1e1e2e;
-    --accent: #7c3aed;
-    --accent2: #06b6d4;
-    --accent3: #f59e0b;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --card: #13131f;
-  }
+/* ───────── Palettes (from the colour references) ───────── */
+:root{
+  --serif:"Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --sans:"Jost", "Futura", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --radius-lg:28px; --radius-md:16px; --radius-sm:10px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+html[data-palette="mocha"]{
+  --bg:#1C1411; --bg-2:#251A16; --surface:#2F221C; --surface-2:#3B2B23;
+  --ink:#F4E8D4; --muted:#BBA690; --faint:#8A7563;
+  --accent:#EBD3A0;      /* champagne gold */
+  --accent-2:#C8742F;    /* burnt amber */
+  --on-accent:#2A1D17;
+  --line:rgba(235,211,160,.16); --line-strong:rgba(235,211,160,.34);
+  --glow:rgba(200,116,47,.30);
+  --sw1:#6F4E37; --sw2:#EBD3A0; --sw3:#C8742F;
+  color-scheme:dark;
+}
+html[data-palette="lavender"]{
+  --bg:#1D1820; --bg-2:#262029; --surface:#2F2833; --surface-2:#3A323F;
+  --ink:#F2ECF5; --muted:#B9ADBF; --faint:#857A8B;
+  --accent:#E5E4E2;      /* platinum silver */
+  --accent-2:#C9B2DA;    /* pale lavender, deepened for contrast */
+  --on-accent:#221C25;
+  --line:rgba(229,228,226,.14); --line-strong:rgba(229,228,226,.32);
+  --glow:rgba(201,178,218,.28);
+  --sw1:#6F4E37; --sw2:#E5E4E2; --sw3:#EBE0F0;
+  color-scheme:dark;
+}
+html[data-palette="platinum"]{
+  --bg:#EFEDE9; --bg-2:#E6E2DC; --surface:#FAF8F5; --surface-2:#F1EDE7;
+  --ink:#2A1D17; --muted:#6A5849; --faint:#8E7C6C;
+  --accent:#6F4E37;      /* mocha */
+  --accent-2:#B4621F;    /* burnt amber, darkened for light bg */
+  --on-accent:#FAF6EF;
+  --line:rgba(111,78,55,.16); --line-strong:rgba(111,78,55,.36);
+  --glow:rgba(235,211,160,.55);
+  --sw1:#E5E4E2; --sw2:#6F4E37; --sw3:#C8742F;
+  color-scheme:light;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:calc(84px + env(safe-area-inset-top,0px))}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.65; font-weight:400;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  transition:background .6s var(--ease), color .6s var(--ease);
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 48px);margin-inline:auto}
+.skip{position:absolute;left:-999px;top:12px;z-index:200;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:999px}
+.skip:focus{left:12px}
 
-  html { scroll-behavior: smooth; }
+/* ───────── Buttons ───────── */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.6rem;border-radius:999px;
+  font-size:.95rem;font-weight:500;letter-spacing:.01em;text-decoration:none;
+  transition:transform .3s var(--ease), background .3s, color .3s, border-color .3s, box-shadow .3s;
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-solid{background:var(--accent);color:var(--on-accent)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px var(--glow)}
+.btn-ghost{border:1px solid var(--line-strong);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.btn-sm{padding:.6rem 1.1rem;font-size:.88rem}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Space Mono', monospace;
-    overflow-x: hidden;
-    cursor: none;
-  }
+/* ───────── Nav ───────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid transparent;transition:border-color .3s,background .6s;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:99;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(18px)}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px;gap:1.5rem}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-mark{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--surface-2);border:1px solid var(--line-strong);
+  font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--accent);
+}
+.logo-name{font-family:var(--serif);font-size:1.3rem;font-weight:500}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.93rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.status{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:#5FBF7A;box-shadow:0 0 0 0 rgba(95,191,122,.6);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(95,191,122,.55)}70%{box-shadow:0 0 0 8px rgba(95,191,122,0)}100%{box-shadow:0 0 0 0 rgba(95,191,122,0)}}
+.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);place-items:center}
+.menu-btn span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative;transition:transform .3s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--ink);transition:transform .3s,top .3s}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+.menu-open .menu-btn span{background:transparent}
+.menu-open .menu-btn span::before{top:0;transform:rotate(45deg)}
+.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
+.mobile-menu{display:none}
 
-  /* Custom cursor */
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: exclusion;
-  }
-  .cursor-ring {
-    width: 40px; height: 40px;
-    border: 1px solid rgba(124,58,237,0.5);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transition: all 0.3s ease;
-    mix-blend-mode: exclusion;
-  }
+/* ───────── Hero ───────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden;isolation:isolate}
+.hero-light{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(600px circle at var(--mx,70%) var(--my,30%), var(--glow), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb,var(--accent-2) 14%,transparent), transparent 70%);
+  transition:background .2s;
+}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:4rem;align-items:center}
+.hero-kicker{display:flex;align-items:center;gap:.7rem;color:var(--muted);font-size:1rem;margin-bottom:1.6rem}
+.hero-kicker::before{content:"";width:36px;height:1px;background:var(--accent)}
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(4rem,11vw,9.6rem);line-height:.86;letter-spacing:-.025em;
+  margin-bottom:2rem;
+}
+.hero h1 .l2{display:block;padding-left:.55em;font-style:italic;color:var(--accent)}
+.hero h1 .l1,.hero h1 .l2{opacity:0;transform:translateY(.25em);animation:rise 1.1s var(--ease) forwards}
+.hero h1 .l2{animation-delay:.12s}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero-lede{max-width:34rem;font-size:1.18rem;line-height:1.7;color:var(--muted);margin-bottom:2.4rem}
+.hero-lede b{color:var(--ink);font-weight:500}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.copy-mail{font-size:.92rem;color:var(--muted);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:4px;padding:.6rem .4rem}
+.copy-mail:hover{color:var(--ink)}
 
-  /* Noise texture overlay */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9000;
-    opacity: 0.3;
-  }
+/* palette swatches, after the reel references */
+.swatches{display:flex;flex-direction:column;gap:16px;max-width:290px;margin-left:auto}
+.swatch{
+  text-align:left;display:grid;grid-template-columns:1fr auto;align-items:end;gap:.5rem;
+  border-radius:22px;padding:22px 22px 20px;min-height:140px;
+  border:1px solid var(--line);position:relative;overflow:hidden;
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease), outline-color .3s;
+  outline:2px solid transparent;outline-offset:4px;
+}
+.swatch:hover{transform:translateX(-8px) rotate(-1deg)}
+.swatch[aria-pressed="true"]{outline-color:var(--accent);transform:translateX(-14px)}
+.swatch .sw-name{font-family:var(--serif);font-size:1.55rem;line-height:1.05;letter-spacing:.02em}
+.swatch .sw-hex{font-size:.75rem;opacity:.75;margin-top:.5rem;display:block;letter-spacing:.06em}
+.swatch .sw-dots{display:flex;gap:5px;align-self:start}
+.swatch .sw-dots i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.18)}
+.sw-mocha{background:linear-gradient(160deg,#7A573F,#4E362A);color:#F3E2C4}
+.sw-lavender{background:linear-gradient(160deg,#F1E8F5,#DCCBE8);color:#3B2B45}
+.sw-platinum{background:linear-gradient(160deg,#F2F1EF,#D9D7D3);color:#3B2A22}
+.swatch-note{font-size:.85rem;color:var(--faint);text-align:right;margin-top:.4rem}
 
-  /* Grid background */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ───────── Facts strip ───────── */
+.facts{border-block:1px solid var(--line);background:var(--bg-2)}
+.facts-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:2rem 1.5rem;border-left:1px solid var(--line)}
+.fact:first-child{border-left:0;padding-left:0}
+.fact b{display:block;font-family:var(--serif);font-weight:400;font-size:2.6rem;line-height:1;color:var(--accent)}
+.fact span{display:block;margin-top:.6rem;font-size:.92rem;color:var(--muted)}
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 3rem;
-    background: rgba(10,10,15,0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 900;
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.05em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-badge {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--accent);
-    border-radius: 100px;
-    font-size: 0.7rem;
-    color: var(--accent);
-    animation: pulse-border 2s infinite;
-  }
-  .nav-badge .dot {
-    width: 6px; height: 6px;
-    background: #22c55e;
-    border-radius: 50%;
-    animation: blink 1s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  @keyframes pulse-border {
-    0%,100%{ box-shadow: 0 0 0 0 rgba(124,58,237,0.3); }
-    50%{ box-shadow: 0 0 0 4px rgba(124,58,237,0); }
-  }
+/* ───────── Sections ───────── */
+.section{padding:clamp(80px,11vw,140px) 0}
+.section.alt{background:var(--bg-2);border-block:1px solid var(--line)}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:2rem 4rem;align-items:end;margin-bottom:3.5rem}
+.head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,5.4vw,4.4rem);line-height:1;letter-spacing:-.015em}
+.head p{color:var(--muted);max-width:30rem;font-size:1.05rem}
 
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: flex-start;
-    padding: 8rem 3rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
+/* ───────── Services tabs ───────── */
+.tabs{display:grid;grid-template-columns:280px 1fr;gap:3rem;align-items:start}
+.tabs>*{min-width:0}
+.tab-list{display:flex;flex-direction:column;gap:.35rem;position:sticky;top:110px}
+.tab{
+  text-align:left;padding:1rem 1.2rem;border-radius:14px;
+  font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--faint);
+  border:1px solid transparent;transition:color .25s,background .25s,border-color .25s;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);background:var(--surface);border-color:var(--line)}
+.tab small{font-family:var(--sans);font-size:.75rem;color:var(--faint)}
+.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(1.6rem,4vw,3rem);
+  display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;
+}
+.panel[hidden]{display:none}
+.panel.show{animation:fadein .5s var(--ease)}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel h3{font-family:var(--serif);font-weight:400;font-size:2.1rem;line-height:1.1;margin-bottom:1rem}
+.panel p{color:var(--muted);margin-bottom:1.4rem}
+.ticks{list-style:none;display:grid;gap:.75rem}
+.ticks li{display:grid;grid-template-columns:22px 1fr;gap:.6rem;font-size:.98rem}
+.ticks li::before{content:"";width:16px;height:16px;margin-top:.3rem;border-radius:50%;background:radial-gradient(circle,var(--accent) 0 3px,transparent 4px);border:1px solid var(--line-strong)}
+.panel-side{border-left:1px solid var(--line);padding-left:2.5rem;display:flex;flex-direction:column;gap:1.5rem}
+.panel-side h4{font-size:.9rem;font-weight:500;color:var(--faint)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{font-size:.85rem;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink)}
+.panel-side .ideal{font-family:var(--serif);font-size:1.3rem;font-style:italic;line-height:1.35;color:var(--ink)}
 
-  /* Animated orbs */
-  .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    animation: float-orb 8s ease-in-out infinite;
-  }
-  .orb-1 {
-    width: 500px; height: 500px;
-    background: rgba(124,58,237,0.12);
-    top: -150px; right: -100px;
-    animation-delay: 0s;
-  }
-  .orb-2 {
-    width: 400px; height: 400px;
-    background: rgba(6,182,212,0.08);
-    bottom: -100px; left: 200px;
-    animation-delay: -3s;
-  }
-  .orb-3 {
-    width: 300px; height: 300px;
-    background: rgba(245,158,11,0.06);
-    top: 30%; right: 20%;
-    animation-delay: -5s;
-  }
-  @keyframes float-orb {
-    0%,100%{ transform: translate(0,0) scale(1); }
-    33%{ transform: translate(-20px, 30px) scale(1.05); }
-    66%{ transform: translate(15px, -20px) scale(0.95); }
-  }
+/* ───────── Work ───────── */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.2rem}
+.filter{padding:.55rem 1.1rem;border-radius:999px;border:1px solid var(--line-strong);font-size:.9rem;color:var(--muted);transition:all .25s}
+.filter:hover{color:var(--ink)}
+.filter[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.work-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.25rem}
+.work{
+  grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:14px;display:flex;flex-direction:column;transition:transform .45s var(--ease),border-color .3s,opacity .35s;
+}
+.work.wide{grid-column:span 3}
+.work:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.work.hide{display:none}
+.mock{
+  border-radius:16px;background:var(--bg-2);border:1px solid var(--line);aspect-ratio:16/10;overflow:hidden;position:relative;
+}
+.mock-bar{height:24px;display:flex;align-items:center;gap:5px;padding:0 10px;border-bottom:1px solid var(--line)}
+.mock-bar i{width:7px;height:7px;border-radius:50%;background:var(--line-strong)}
+.mock-body{position:absolute;inset:24px 0 0;padding:12px;display:grid;gap:8px}
+.blk{border-radius:6px;background:color-mix(in srgb,var(--ink) 9%,transparent)}
+.blk.a{background:color-mix(in srgb,var(--accent) 55%,transparent)}
+.blk.b{background:color-mix(in srgb,var(--accent-2) 60%,transparent)}
+.blk.line{height:6px;border-radius:3px}
+.m-store{grid-template-columns:repeat(4,1fr);grid-template-rows:1.2fr 1fr .25fr}
+.m-store .hero-b{grid-column:1/-1}
+.m-landing{grid-template-columns:1.2fr 1fr;grid-template-rows:1fr .5fr}
+.m-landing .txt{display:flex;flex-direction:column;justify-content:center;gap:7px}
+.m-acf{grid-template-columns:1fr;grid-template-rows:.8fr .5fr .7fr}
+.m-acf .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.m-woo{grid-template-columns:1.4fr 1fr}
+.m-woo .list{display:grid;gap:8px;grid-auto-rows:1fr}
+.m-woo .sum{display:flex;flex-direction:column;gap:7px;padding:10px;border:1px solid var(--line);border-radius:8px}
+.m-mod{grid-template-columns:.6fr 1.4fr}
+.m-mod .side{display:flex;flex-direction:column;gap:7px}
+.m-speed{place-items:center}
+.gauge{width:46%;aspect-ratio:1;position:relative}
+.gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge .ring-bg{stroke:var(--line-strong)}
+.gauge .ring{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.8s var(--ease)}
+.gauge.go .ring{stroke-dashoffset:22}
+.gauge b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:2.4rem;font-weight:400}
+.work-info{padding:1.3rem .6rem .6rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.work-meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--faint)}
+.work-meta .pill{padding:.2rem .65rem;border-radius:999px;border:1px solid var(--line-strong);color:var(--accent)}
+.work h3{font-family:var(--serif);font-weight:400;font-size:1.65rem;line-height:1.1}
+.work p{color:var(--muted);font-size:.95rem}
 
-  .hero-eyebrow {
-    display: flex; align-items: center; gap: 1rem;
-    margin-bottom: 1.5rem;
-    animation: slide-up 0.8s ease both;
-  }
-  .hero-eyebrow span {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent2);
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 40px; height: 1px;
-    background: var(--accent2);
-  }
+/* ───────── Process ───────── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s;border-top:1px solid var(--line-strong)}
+.step{padding:2rem 1.8rem 0 0;position:relative}
+.step + .step{padding-left:1.8rem;border-left:1px solid var(--line)}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font-family:var(--serif);font-style:italic;font-size:3.2rem;line-height:1;color:var(--accent);display:block;margin-bottom:1.2rem}
+.step h3{font-size:1.15rem;font-weight:500;margin-bottom:.5rem}
+.step p{color:var(--muted);font-size:.95rem}
 
-  .hero-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 900;
-    font-size: clamp(3.5rem, 8vw, 8rem);
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-    animation: slide-up 0.8s ease 0.1s both;
-  }
-  .hero-name .line1 { display: block; color: var(--text); }
-  .hero-name .line2 {
-    display: block;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, var(--accent3) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+/* ───────── Experience ───────── */
+.jobs{display:flex;flex-direction:column}
+.job{display:grid;grid-template-columns:220px 1fr auto;gap:2rem;padding:2.2rem 0;border-top:1px solid var(--line);align-items:start}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job-when{color:var(--muted);font-size:.95rem}
+.job-when b{display:block;color:var(--ink);font-weight:500}
+.job h3{font-family:var(--serif);font-weight:400;font-size:1.9rem;line-height:1.1}
+.job .co{color:var(--accent);margin:.3rem 0 0;font-size:.98rem}
+.job-toggle{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;transition:transform .35s var(--ease),background .25s}
+.job-toggle:hover{background:var(--surface)}
+.job-toggle svg{width:16px;height:16px}
+.job[data-open="true"] .job-toggle{transform:rotate(45deg)}
+.job-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.job[data-open="true"] .job-detail{grid-template-rows:1fr}
+.job-detail > div{overflow:hidden}
+.job-detail ul{list-style:none;display:grid;gap:.55rem;padding-top:1.2rem;color:var(--muted)}
+.job-detail li{padding-left:1.2rem;position:relative}
+.job-detail li::before{content:"";position:absolute;left:0;top:.75em;width:6px;height:1px;background:var(--accent)}
+.now{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:#5FBF7A;margin-top:.6rem}
+.now i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.edu{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem 3rem;align-items:baseline;color:var(--muted)}
+.edu b{font-family:var(--serif);font-weight:400;font-size:1.6rem;color:var(--ink)}
 
-  .hero-title {
-    font-size: 0.85rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    animation: slide-up 0.8s ease 0.2s both;
-  }
-  .hero-title span { color: var(--accent3); }
+/* ───────── Toolkit marquee ───────── */
+.toolkit{overflow:hidden;border-block:1px solid var(--line);padding:1.6rem 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.toolkit-track{display:flex;gap:3rem;width:max-content;animation:slide 38s linear infinite}
+.toolkit:hover .toolkit-track{animation-play-state:paused}
+.toolkit-track span{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:3rem}
+.toolkit-track span::after{content:"✦";font-style:normal;font-size:.9rem;color:var(--accent)}
+@keyframes slide{to{transform:translateX(-50%)}}
 
-  .hero-desc {
-    max-width: 540px;
-    line-height: 1.8;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 3rem;
-    animation: slide-up 0.8s ease 0.3s both;
-  }
-  .hero-desc strong { color: var(--text); font-weight: 700; }
+/* ───────── Resume block ───────── */
+.cv{
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;
+  padding:clamp(2rem,5vw,3.5rem);border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,var(--surface-2),var(--surface));border:1px solid var(--line-strong);
+  position:relative;overflow:hidden;
+}
+.cv::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none}
+.cv h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,3.4rem);line-height:1.05;margin-bottom:.6rem}
+.cv p{color:var(--muted);max-width:34rem}
+.cv-actions{display:flex;gap:.7rem;flex-wrap:wrap;position:relative;z-index:1}
 
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: slide-up 0.8s ease 0.4s both;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.9rem 2rem;
-    background: linear-gradient(135deg, var(--accent), #5b21b6);
-    color: white;
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  }
-  .btn-primary::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,58,237,0.4); }
-  .btn-primary:hover::before { opacity: 1; }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.9rem 2rem;
-    background: transparent;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+/* ───────── Planner ───────── */
+.planner{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:start}
+.plan-form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(1.5rem,4vw,2.6rem);display:grid;gap:2rem}
+.q legend,.q label.lbl{display:block;font-weight:500;margin-bottom:.8rem}
+.q legend small,.q label.lbl small{color:var(--faint);font-weight:400;margin-left:.35rem}
+fieldset{border:0}
+.opts{display:flex;flex-wrap:wrap;gap:.5rem}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:inline-block;padding:.6rem 1.1rem;border-radius:999px;border:1px solid var(--line-strong);font-size:.93rem;color:var(--muted);cursor:pointer;transition:all .2s;user-select:none}
+.opt span:hover{color:var(--ink);border-color:var(--accent)}
+.opt input:checked + span{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.opt input:focus-visible + span{outline:2px solid var(--accent-2);outline-offset:3px}
+.field{width:100%;background:var(--bg-2);border:1px solid var(--line-strong);border-radius:12px;padding:.85rem 1rem;color:var(--ink);font:inherit;font-size:.98rem;transition:border-color .2s}
+.field:focus{outline:none;border-color:var(--accent)}
+textarea.field{min-height:110px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.brief{position:sticky;top:110px;background:var(--bg-2);border:1px dashed var(--line-strong);border-radius:var(--radius-lg);padding:2rem}
+.brief h3{font-family:var(--serif);font-weight:400;font-size:1.8rem;margin-bottom:1.2rem}
+.brief dl{display:grid;gap:.9rem;margin-bottom:1.6rem}
+.brief dt{font-size:.82rem;color:var(--faint)}
+.brief dd{font-size:1rem;color:var(--ink);min-height:1.4em}
+.brief dd.empty{color:var(--faint);font-style:italic}
+.brief .btn{width:100%;justify-content:center}
+.brief .btn + .btn{margin-top:.6rem}
 
-  /* Scroll indicator */
-  .scroll-hint {
-    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    animation: slide-up 1s ease 1s both;
-  }
-  .scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); }
-  .scroll-line {
-    width: 1px; height: 60px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scroll-anim 2s ease-in-out infinite;
-  }
-  @keyframes scroll-anim {
-    0%{ transform: scaleY(0); transform-origin: top; }
-    50%{ transform: scaleY(1); transform-origin: top; }
-    51%{ transform: scaleY(1); transform-origin: bottom; }
-    100%{ transform: scaleY(0); transform-origin: bottom; }
-  }
+/* ───────── FAQ ───────── */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:1.5rem 0;display:flex;justify-content:space-between;gap:1rem;font-family:var(--serif);font-size:1.55rem;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);font-weight:300;font-size:1.6rem;color:var(--accent);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding:0 0 1.6rem;max-width:44rem}
 
-  /* Stats bar */
-  .stats-bar {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 3rem;
-    display: flex; gap: 3rem;
-    overflow-x: auto;
-    position: relative; z-index: 1;
-  }
-  .stat {
-    display: flex; flex-direction: column;
-    white-space: nowrap;
-  }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .stat-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.2rem; }
+/* ───────── Contact ───────── */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:end}
+.contact h2{font-family:var(--serif);font-weight:300;font-size:clamp(3.2rem,8vw,7rem);line-height:.92;letter-spacing:-.02em;margin-bottom:1.8rem}
+.contact h2 em{color:var(--accent)}
+.contact p{color:var(--muted);max-width:30rem;margin-bottom:2rem}
+.links{list-style:none;border-top:1px solid var(--line)}
+.links a,.links div{display:flex;justify-content:space-between;align-items:center;padding:1.15rem 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s var(--ease),color .2s}
+.links a:hover{padding-left:.8rem;color:var(--accent)}
+.links span{color:var(--faint);font-size:.88rem}
+.links b{font-weight:400}
 
-  /* ─── SECTIONS ─── */
-  section {
-    padding: 5rem 3rem;
-    position: relative; z-index: 1;
-  }
-  .section-header {
-    display: flex; align-items: center; gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  .section-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--border), transparent);
-  }
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
-  /* ─── SKILLS GRID ─── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .skill-card {
-    background: var(--card);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .skill-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .skill-card:hover { background: #161622; }
-  .skill-card:hover::before { transform: scaleX(1); }
-  .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .skill-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .skill-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.7; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
-  .tag {
-    padding: 0.2rem 0.6rem;
-    background: rgba(124,58,237,0.1);
-    border: 1px solid rgba(124,58,237,0.2);
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-  .tag.cyan {
-    background: rgba(6,182,212,0.1);
-    border-color: rgba(6,182,212,0.2);
-    color: var(--accent2);
-  }
-  .tag.amber {
-    background: rgba(245,158,11,0.1);
-    border-color: rgba(245,158,11,0.2);
-    color: var(--accent3);
-  }
+/* ───────── Toast & to-top ───────── */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);background:var(--ink);color:var(--bg);padding:.8rem 1.3rem;border-radius:999px;font-size:.92rem;z-index:300;transition:transform .45s var(--ease)}
+.toast.show{transform:translate(-50%,0)}
+.to-top{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line-strong);display:grid;place-items:center;z-index:90;opacity:0;pointer-events:none;transform:translateY(10px);transition:all .35s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top svg{width:18px;height:18px}
 
-  /* ─── EXPERIENCE TIMELINE ─── */
-  .timeline {
-    display: flex; flex-direction: column; gap: 0;
-    position: relative;
-    padding-left: 2rem;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent3), transparent);
-  }
-  .timeline-item {
-    padding: 0 0 3rem 2rem;
-    position: relative;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute; left: -5px; top: 6px;
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(124,58,237,0.2);
-  }
-  .timeline-item.current::before { background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
-  .timeline-date { font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.15em; margin-bottom: 0.5rem; }
-  .timeline-role {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-  }
-  .timeline-company { font-size: 0.75rem; color: var(--muted); margin-bottom: 1rem; }
-  .timeline-company b { color: var(--text); font-weight: 700; }
-  .timeline-points { list-style: none; }
-  .timeline-points li {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.7;
-    padding: 0.3rem 0;
-    padding-left: 1rem;
-    position: relative;
-  }
-  .timeline-points li::before {
-    content: '→';
-    position: absolute; left: 0;
-    color: var(--accent);
-  }
-  .current-badge {
-    display: inline-block;
-    padding: 0.15rem 0.6rem;
-    background: rgba(34,197,94,0.1);
-    border: 1px solid rgba(34,197,94,0.3);
-    color: #22c55e;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    margin-left: 0.8rem;
-    vertical-align: middle;
-  }
+/* scroll reveal: one quiet fade, only for section heads */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
 
-  /* ─── PROJECTS ─── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .project-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-    box-shadow: 0 20px 50px rgba(124,58,237,0.1);
-  }
-  .project-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform: scaleX(0);
-    transition: transform 0.4s;
-  }
-  .project-card:hover::after { transform: scaleX(1); }
-  .project-top { display: flex; align-items: baseline; justify-content: space-between; }
-  .project-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: rgba(124,58,237,0.12);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-  .project-platform {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    border: 1px solid rgba(6,182,212,0.25);
-    padding: 0.2rem 0.55rem;
-  }
-  .project-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .project-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
-  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-  /* ─── TECH MARQUEE ─── */
-  .marquee-section {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 0;
-    overflow: hidden;
-  }
-  .marquee-track {
-    display: flex;
-    animation: marquee 20s linear infinite;
-    width: max-content;
-  }
-  .marquee-section:hover .marquee-track { animation-play-state: paused; }
-  @keyframes marquee {
-    from{ transform: translateX(0); }
-    to{ transform: translateX(-50%); }
-  }
-  .marquee-item {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0 2.5rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    white-space: nowrap;
-    border-right: 1px solid var(--border);
-  }
-  .marquee-item span { color: var(--accent); }
-
-  /* ─── CONTACT ─── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-  .contact-big {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-  .contact-big span {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .contact-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link {
-    display: flex; align-items: center; gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.2s, transform 0.2s;
-    font-size: 0.8rem;
-  }
-  .contact-link:hover { border-color: var(--accent); transform: translateX(4px); }
-  .contact-link-icon { font-size: 1.2rem; }
-  .contact-link-label { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; display: block; }
-
-  /* ─── GITHUB README TERMINAL ─── */
-  .terminal {
-    background: #0d0d14;
-    border: 1px solid var(--border);
-    border-radius: 0;
-    overflow: hidden;
-    font-family: 'Space Mono', monospace;
-  }
-  .terminal-bar {
-    background: #1a1a2e;
-    padding: 0.8rem 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .terminal-dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-  }
-  .terminal-dot.red { background: #ff5f57; }
-  .terminal-dot.yellow { background: #febc2e; }
-  .terminal-dot.green { background: #28c840; }
-  .terminal-title { margin-left: auto; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
-  .terminal-body { padding: 1.5rem; overflow-x: auto; }
-  .terminal-line { font-size: 0.75rem; line-height: 2; white-space: nowrap; }
-  .t-prompt { color: var(--accent); }
-  .t-cmd { color: var(--accent2); }
-  .t-str { color: #f59e0b; }
-  .t-comment { color: var(--muted); }
-  .t-key { color: var(--accent); }
-  .t-val { color: #4ade80; }
-  .t-blink {
-    display: inline-block;
-    width: 8px; height: 1.1em;
-    background: var(--accent);
-    vertical-align: text-bottom;
-    animation: blink 1s step-end infinite;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 2rem 3rem;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 1rem; flex-wrap: wrap;
-    position: relative; z-index: 1;
-  }
-  .footer-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .footer-note { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes slide-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Glitch effect on hover for name */
-  .hero-name:hover .line1 {
-    animation: glitch 0.5s ease;
-  }
-  @keyframes glitch {
-    0%,100%{ transform: none; text-shadow: none; }
-    20%{ transform: translate(-2px, 0); text-shadow: 2px 0 var(--accent2); }
-    40%{ transform: translate(2px, 0); text-shadow: -2px 0 var(--accent); }
-    60%{ transform: translate(0, 1px); }
-  }
-
-  @media (max-width: 768px) {
-    body { cursor: auto; }
-    .cursor, .cursor-ring { display: none; }
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 6rem 1.5rem 3rem; }
-    section { padding: 3rem 1.5rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .stats-bar { padding: 1rem 1.5rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
+/* ───────── Responsive ───────── */
+@media (max-width:1020px){
+  .nav-links,.status{display:none}
+  .menu-btn{display:grid}
+  .mobile-menu{display:block;position:fixed;inset:0;z-index:95;background:var(--bg);padding:calc(110px + env(safe-area-inset-top,0px)) 24px 40px;opacity:0;pointer-events:none;transition:opacity .35s}
+  .menu-open .mobile-menu{opacity:1;pointer-events:auto}
+  .mobile-menu a{display:block;font-family:var(--serif);font-size:2.4rem;text-decoration:none;padding:.4rem 0}
+  .mobile-menu .btn{font-family:var(--sans);font-size:1rem;margin-top:1.5rem;display:inline-flex}
+  .hero-grid{grid-template-columns:1fr;gap:3rem}
+  .swatches{flex-direction:row;max-width:none;margin:0}
+  .swatch{flex:1;min-height:110px}
+  .swatch[aria-pressed="true"]{transform:translateY(-8px)}
+  .swatch:hover{transform:translateY(-4px)}
+  .swatch-note{text-align:left}
+  .tabs{grid-template-columns:1fr}
+  .tab-list{position:static;flex-direction:row;overflow-x:auto;padding-bottom:.4rem}
+  .tab{font-size:1.2rem;white-space:nowrap}
+  .tab small{display:none}
+  .work,.work.wide{grid-column:span 3}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(3){padding-left:0;border-left:0}
+  .step{padding-bottom:2rem}
+  .planner,.contact{grid-template-columns:1fr}
+  .brief{position:static}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .wrap{width:min(1200px,100% - 36px)}
+  .hero{padding-top:120px}
+  .hero h1{font-size:clamp(4.4rem,22vw,6rem)}
+  .hero h1 .l2{padding-left:.3em}
+  .facts-in{grid-template-columns:1fr 1fr}
+  .fact{padding:1.4rem 0;border-left:0}
+  .fact:nth-child(even){padding-left:1.2rem;border-left:1px solid var(--line)}
+  .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .head{grid-template-columns:1fr}
+  .panel{grid-template-columns:1fr}
+  .panel-side{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:1.5rem}
+  .work,.work.wide{grid-column:1/-1}
+  .steps{grid-template-columns:1fr}
+  .step,.step + .step{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .steps{border-top:0}
+  .job{grid-template-columns:1fr auto;gap:.8rem 1rem}
+  .job-when{grid-column:1/-1}
+  .cv{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .swatch .sw-name{font-size:1.05rem}
+  .swatch{padding:14px;min-height:100px}
+  .swatch .sw-dots{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- Custom cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">SB.DEV</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-badge">
-    <div class="dot"></div>
-    Available for work
+<!-- ───────── NAV ───────── -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Shivam Bhatt, back to top">
+      <span class="logo-mark">sb</span>
+      <span class="logo-name">Shivam Bhatt</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#planner">Start a project</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span class="status"><i></i>Taking new projects</span>
+      <a class="btn btn-ghost btn-sm" href="resume.pdf" download="Shivam-Bhatt-Resume.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Resume
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
+    </div>
   </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a href="#services">Services</a>
+  <a href="#work">Work</a>
+  <a href="#experience">Experience</a>
+  <a href="#planner">Start a project</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-solid" href="resume.pdf" download="Shivam-Bhatt-Resume.pdf">Download resume</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <div class="hero-eyebrow">
-    <span>Shopify &amp; WordPress Developer · Ahmedabad, IN</span>
-  </div>
-
-  <h1 class="hero-name">
-    <span class="line1">Shivam</span>
-    <span class="line2">Bhatt</span>
-  </h1>
-
-  <p class="hero-title">
-    Shopify · WordPress · <span>WooCommerce · Liquid</span>
-  </p>
-
-  <p class="hero-desc">
-    I build and customize <strong>Shopify</strong> and <strong>WordPress</strong> stores that
-    convert — custom Liquid themes, CRO landing pages, ACF-driven sites, and WooCommerce builds.
-    <strong>4+ years</strong> turning designs into fast, maintainable e-commerce.
-  </p>
-
-  <div class="hero-cta">
-    <a href="#contact" class="btn-primary">↗ Let's Work Together</a>
-    <a href="https://github.com/shivambhatt15" target="_blank" rel="noopener" class="btn-outline">⌘ GitHub Profile</a>
-  </div>
-
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat">
-    <span class="stat-num">4+</span>
-    <span class="stat-label">Years Experience</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">3</span>
-    <span class="stat-label">Companies</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">Shopify</span>
-    <span class="stat-label">Liquid &amp; Theme Dev</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">WordPress</span>
-    <span class="stat-label">ACF &amp; WooCommerce</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">MCA</span>
-    <span class="stat-label">Computer Applications</span>
-  </div>
-</div>
-
-<!-- TECH MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item"><span>⬡</span> Shopify</div>
-    <div class="marquee-item"><span>⬡</span> Liquid</div>
-    <div class="marquee-item"><span>⬡</span> WordPress</div>
-    <div class="marquee-item"><span>⬡</span> WooCommerce</div>
-    <div class="marquee-item"><span>⬡</span> ACF</div>
-    <div class="marquee-item"><span>⬡</span> PHP</div>
-    <div class="marquee-item"><span>⬡</span> JavaScript</div>
-    <div class="marquee-item"><span>⬡</span> HTML5 / CSS3</div>
-    <div class="marquee-item"><span>⬡</span> Bootstrap 5</div>
-    <div class="marquee-item"><span>⬡</span> Magento 2</div>
-    <div class="marquee-item"><span>⬡</span> MySQL</div>
-    <div class="marquee-item"><span>⬡</span> React JS</div>
-    <div class="marquee-item"><span>⬡</span> Figma</div>
-    <div class="marquee-item"><span>⬡</span> Git / GitHub</div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-item"><span>⬡</span> Shopify</div>
-    <div class="marquee-item"><span>⬡</span> Liquid</div>
-    <div class="marquee-item"><span>⬡</span> WordPress</div>
-    <div class="marquee-item"><span>⬡</span> WooCommerce</div>
-    <div class="marquee-item"><span>⬡</span> ACF</div>
-    <div class="marquee-item"><span>⬡</span> PHP</div>
-    <div class="marquee-item"><span>⬡</span> JavaScript</div>
-    <div class="marquee-item"><span>⬡</span> HTML5 / CSS3</div>
-    <div class="marquee-item"><span>⬡</span> Bootstrap 5</div>
-    <div class="marquee-item"><span>⬡</span> Magento 2</div>
-    <div class="marquee-item"><span>⬡</span> MySQL</div>
-    <div class="marquee-item"><span>⬡</span> React JS</div>
-    <div class="marquee-item"><span>⬡</span> Figma</div>
-    <div class="marquee-item"><span>⬡</span> Git / GitHub</div>
-  </div>
-</div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">01</span>
-    <h2 class="section-title">Core Skills</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-icon">🛍️</div>
-      <div class="skill-name">Shopify Development</div>
-      <div class="skill-desc">Custom Liquid themes built from scratch and Online Store 2.0 sections. Metafields, app integrations, checkout/cart tweaks, and CRO-focused landing pages.</div>
-      <div class="skill-tags">
-        <span class="tag">Liquid</span>
-        <span class="tag">OS 2.0 Sections</span>
-        <span class="tag amber">Metafields</span>
-        <span class="tag amber">CRO</span>
-      </div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:0.1s">
-      <div class="skill-icon">🌐</div>
-      <div class="skill-name">WordPress Development</div>
-      <div class="skill-desc">Custom themes and child themes, ACF flexible content layouts, plugin tweaks, and WooCommerce stores wired up for real products and payments.</div>
-      <div class="skill-tags">
-        <span class="tag cyan">Custom Themes</span>
-        <span class="tag cyan">ACF</span>
-        <span class="tag">WooCommerce</span>
-        <span class="tag">PHP</span>
-      </div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:0.2s">
-      <div class="skill-icon">⚡</div>
-      <div class="skill-name">Performance &amp; CRO</div>
-      <div class="skill-desc">Faster Core Web Vitals through lazy loading, image optimization, and lean markup — plus conversion-driven layouts that turn traffic into orders.</div>
-      <div class="skill-tags">
-        <span class="tag amber">Core Web Vitals</span>
-        <span class="tag amber">Speed</span>
-        <span class="tag cyan">Landing Pages</span>
-        <span class="tag cyan">A/B Layouts</span>
-      </div>
-    </div>
-    <div class="skill-card reveal" style="transition-delay:0.3s">
-      <div class="skill-icon">🗄️</div>
-      <div class="skill-name">Backend &amp; Frontend</div>
-      <div class="skill-desc">PHP &amp; MySQL behind the stores, Magento 2 custom modules, and clean responsive frontends with JavaScript, Bootstrap and React when the job calls for it.</div>
-      <div class="skill-tags">
-        <span class="tag">PHP</span>
-        <span class="tag">MySQL</span>
-        <span class="tag cyan">Magento 2</span>
-        <span class="tag cyan">React</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Experience</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="timeline">
-    <div class="timeline-item current reveal">
-      <div class="timeline-date">JUN 2023 — PRESENT · 3 YRS+</div>
-      <div class="timeline-role">Shopify Developer &amp; WordPress Developer <span class="current-badge">● CURRENT</span></div>
-      <div class="timeline-company"><b>Zero Gravity Communications</b> · Full-time · Ahmedabad, India</div>
-      <ul class="timeline-points">
-        <li>Build and customize Shopify stores — custom Liquid themes, OS 2.0 sections, metafields and third-party app integrations</li>
-        <li>Develop WordPress sites with custom themes, ACF layouts and WooCommerce, plus ongoing performance optimization</li>
-        <li>Convert Figma designs into pixel-perfect, responsive, conversion-focused storefronts and landing pages</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-date">JAN 2023 — JUN 2023 · 6 MOS</div>
-      <div class="timeline-role">JavaScript Developer</div>
-      <div class="timeline-company"><b>Felix-IT Systems</b> · Self-employed · Ahmedabad, India · On-site</div>
-      <ul class="timeline-points">
-        <li>Built interactive front-end features with JavaScript and React, focused on clean OOP structure and problem solving</li>
-        <li>Created database tables and modules, and worked on re-branding components</li>
-        <li>Handled UI implementation and web design from layout to working interface</li>
-      </ul>
-    </div>
-    <div class="timeline-item reveal">
-      <div class="timeline-date">JAN 2022 — DEC 2022 · 1 YR</div>
-      <div class="timeline-role">Internship Trainee</div>
-      <div class="timeline-company"><b>Magneto IT Solutions LLC</b> · Full-time · Ahmedabad, India · On-site</div>
-      <ul class="timeline-points">
-        <li>Hands-on with Magento 2 — module development and re-branding modules</li>
-        <li>Front-end development and CSS, converting Figma layouts into responsive HTML</li>
-        <li>Supported database administration and website design tasks</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- WORK / PROJECTS -->
-<section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">03</span>
-    <h2 class="section-title">What I Build</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-top">
-        <div class="project-num">01</div>
-        <span class="project-platform">Shopify</span>
-      </div>
-      <div class="project-name">Custom Theme Development</div>
-      <div class="project-desc">Bespoke Shopify themes built in Liquid with reusable Online Store 2.0 sections, metafields and a clean, editable structure merchants can manage themselves.</div>
-      <div class="project-tech">
-        <span class="tag">Liquid</span><span class="tag cyan">OS 2.0</span><span class="tag">JS</span>
-      </div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:0.1s">
-      <div class="project-top">
-        <div class="project-num">02</div>
-        <span class="project-platform">Shopify</span>
-      </div>
-      <div class="project-name">CRO Landing Pages</div>
-      <div class="project-desc">High-converting product and campaign landing pages — fast-loading, mobile-first layouts designed around clear offers, social proof and strong calls to action.</div>
-      <div class="project-tech">
-        <span class="tag">Liquid</span><span class="tag amber">CRO</span><span class="tag cyan">CSS3</span>
-      </div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:0.2s">
-      <div class="project-top">
-        <div class="project-num">03</div>
-        <span class="project-platform">WordPress</span>
-      </div>
-      <div class="project-name">ACF Development</div>
-      <div class="project-desc">Custom WordPress themes powered by Advanced Custom Fields — flexible content blocks that let clients build and edit pages without touching code.</div>
-      <div class="project-tech">
-        <span class="tag cyan">ACF</span><span class="tag">PHP</span><span class="tag amber">Custom Themes</span>
-      </div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:0.3s">
-      <div class="project-top">
-        <div class="project-num">04</div>
-        <span class="project-platform">WooCommerce</span>
-      </div>
-      <div class="project-name">WooCommerce Stores</div>
-      <div class="project-desc">Full WordPress + WooCommerce stores — product setup, cart and checkout, payment gateways and the custom templates that make them feel on-brand.</div>
-      <div class="project-tech">
-        <span class="tag">WooCommerce</span><span class="tag cyan">WordPress</span><span class="tag">PHP</span>
-      </div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:0.15s">
-      <div class="project-top">
-        <div class="project-num">05</div>
-        <span class="project-platform">Magento 2</span>
-      </div>
-      <div class="project-name">Custom Modules</div>
-      <div class="project-desc">Magento 2 custom module and re-branding work — extending store functionality and tailoring the admin and storefront to client requirements.</div>
-      <div class="project-tech">
-        <span class="tag cyan">Magento 2</span><span class="tag">PHP</span><span class="tag amber">MySQL</span>
-      </div>
-    </div>
-    <div class="project-card reveal" style="transition-delay:0.25s">
-      <div class="project-top">
-        <div class="project-num">06</div>
-        <span class="project-platform">Optimization</span>
-      </div>
-      <div class="project-name">Performance Optimization</div>
-      <div class="project-desc">Speeding up existing Shopify and WordPress sites — lazy loading, image and asset optimization, lean markup and better Core Web Vitals scores.</div>
-      <div class="project-tech">
-        <span class="tag amber">Speed</span><span class="tag cyan">Core Web Vitals</span><span class="tag">Audits</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GITHUB README TERMINAL -->
-<section style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem 3rem;">
-  <div class="section-header reveal">
-    <span class="section-num">04</span>
-    <h2 class="section-title">README.md</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="terminal reveal">
-    <div class="terminal-bar">
-      <div class="terminal-dot red"></div>
-      <div class="terminal-dot yellow"></div>
-      <div class="terminal-dot green"></div>
-      <div class="terminal-title">shivambhatt15 / README.md</div>
-    </div>
-    <div class="terminal-body">
-      <div class="terminal-line"><span class="t-comment"># 👋 Hello World, I'm</span></div>
-      <div class="terminal-line" style="margin-bottom:0.5rem"></div>
-      <div class="terminal-line"><span class="t-key">const</span> <span class="t-cmd">developer</span> = {</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">name</span>: <span class="t-str">"Shivam Bhatt"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">location</span>: <span class="t-str">"Ahmedabad, Gujarat 🇮🇳"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">currentRole</span>: <span class="t-str">"Shopify &amp; WordPress Dev @ Zero Gravity"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">specialties</span>: [</div>
-      <div class="terminal-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Shopify / Liquid"</span>, <span class="t-str">"WordPress / ACF"</span>, <span class="t-str">"WooCommerce"</span></div>
-      <div class="terminal-line">&nbsp;&nbsp;],</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">alsoKnows</span>: [<span class="t-str">"PHP"</span>, <span class="t-str">"Magento 2"</span>, <span class="t-str">"React"</span>, <span class="t-str">"MySQL"</span>],</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">education</span>: <span class="t-str">"MCA — Computer Applications"</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">openToWork</span>: <span class="t-val">true</span>,</div>
-      <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">email</span>: <span class="t-str">"shivam.bhatt1512@gmail.com"</span></div>
-      <div class="terminal-line">};</div>
-      <div class="terminal-line" style="margin-top:1rem">
-        <span class="t-prompt">$</span> <span class="t-cmd">git</span> status <span class="t-comment">// always learning, always building</span>
-      </div>
-      <div class="terminal-line">
-        <span class="t-val">On branch: main · Status: committed to clean code ✓</span>
-      </div>
-      <div class="terminal-line" style="margin-top:0.5rem">
-        <span class="t-prompt">$</span> <span class="t-blink"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid">
-    <div class="reveal">
-      <p class="contact-big">Let's Build<br><span>Your Store.</span></p>
-      <p class="contact-desc">
-        Available for freelance projects, full-time roles and collaborations —
-        Shopify theme builds, WordPress &amp; WooCommerce sites, landing pages and store optimization.
+<main id="main">
+<!-- ───────── HERO ───────── -->
+<section class="hero" id="top">
+  <div class="hero-light" id="heroLight" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-kicker">Shopify &amp; WordPress developer, Ahmedabad</p>
+      <h1><span class="l1">Shivam</span><span class="l2">Bhatt</span></h1>
+      <p class="hero-lede">
+        I build <b>Shopify</b> and <b>WordPress</b> stores that look considered and sell well — custom Liquid themes,
+        conversion-focused landing pages, ACF-powered sites and WooCommerce builds, for brands in India and worldwide.
       </p>
-      <a href="mailto:shivam.bhatt1512@gmail.com" class="btn-primary" style="display:inline-flex">
-        ✉ Send Email
-      </a>
+      <div class="hero-cta">
+        <a href="#planner" class="btn btn-solid">
+          Start a project
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+        <a href="resume.pdf" download="Shivam-Bhatt-Resume.pdf" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+          Download resume
+        </a>
+        <button class="copy-mail" data-copy="shivam.bhatt1512@gmail.com">Copy email</button>
+      </div>
     </div>
-    <div class="reveal" style="transition-delay:0.2s">
-      <div class="contact-links">
-        <a href="mailto:shivam.bhatt1512@gmail.com" class="contact-link">
-          <span class="contact-link-icon">✉</span>
+
+    <div>
+      <div class="swatches" role="group" aria-label="Choose a colour palette for this site">
+        <button class="swatch sw-mocha" data-palette="mocha" aria-pressed="true">
+          <span><span class="sw-name">Mocha &amp;<br>Champagne</span><span class="sw-hex">#6F4E37 / #EBD3A0</span></span>
+          <span class="sw-dots"><i style="background:#6F4E37"></i><i style="background:#EBD3A0"></i><i style="background:#C8742F"></i></span>
+        </button>
+        <button class="swatch sw-lavender" data-palette="lavender" aria-pressed="false">
+          <span><span class="sw-name">Pale<br>Lavender</span><span class="sw-hex">#EBE0F0 / #E5E4E2</span></span>
+          <span class="sw-dots"><i style="background:#EBE0F0"></i><i style="background:#E5E4E2"></i><i style="background:#6F4E37"></i></span>
+        </button>
+        <button class="swatch sw-platinum" data-palette="platinum" aria-pressed="false">
+          <span><span class="sw-name">Platinum<br>Silver</span><span class="sw-hex">#E5E4E2 / #C8742F</span></span>
+          <span class="sw-dots"><i style="background:#E5E4E2"></i><i style="background:#6F4E37"></i><i style="background:#C8742F"></i></span>
+        </button>
+      </div>
+      <p class="swatch-note">Tap a palette — the whole site restyles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FACTS ───────── -->
+<div class="facts">
+  <div class="wrap facts-in">
+    <div class="fact"><b data-count="4">4+</b><span>years building e-commerce</span></div>
+    <div class="fact"><b data-count="3">3</b><span>agencies and studios</span></div>
+    <div class="fact"><b>4</b><span>platforms: Shopify, WordPress, WooCommerce, Magento 2</span></div>
+    <div class="fact"><b>IST</b><span>remote-friendly, overlapping hours with UK, EU and US</span></div>
+  </div>
+</div>
+
+<!-- ───────── SERVICES ───────── -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>What I can do for your store</h2>
+      <p>Pick a platform to see exactly what’s included. Every build is responsive, fast, and handed over so your team can edit it without me.</p>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Services">
+        <button class="tab" role="tab" id="t-shopify" aria-controls="p-shopify" aria-selected="true">Shopify <small>Liquid, OS 2.0</small></button>
+        <button class="tab" role="tab" id="t-wp" aria-controls="p-wp" aria-selected="false" tabindex="-1">WordPress <small>ACF, themes</small></button>
+        <button class="tab" role="tab" id="t-woo" aria-controls="p-woo" aria-selected="false" tabindex="-1">WooCommerce <small>Stores</small></button>
+        <button class="tab" role="tab" id="t-perf" aria-controls="p-perf" aria-selected="false" tabindex="-1">Speed &amp; CRO <small>Audits</small></button>
+        <button class="tab" role="tab" id="t-mag" aria-controls="p-mag" aria-selected="false" tabindex="-1">Magento 2 <small>Modules</small></button>
+      </div>
+
+      <div>
+        <div class="panel show" role="tabpanel" id="p-shopify" aria-labelledby="t-shopify">
           <div>
-            <span class="contact-link-label">Email</span>
-            shivam.bhatt1512@gmail.com
+            <h3>Custom Shopify themes and sections</h3>
+            <p>Themes built in Liquid from scratch or on top of Dawn, with Online Store 2.0 sections your team can rearrange in the theme editor.</p>
+            <ul class="ticks">
+              <li>Figma or brief to a pixel-accurate, responsive theme</li>
+              <li>Reusable sections and blocks, driven by metafields and metaobjects</li>
+              <li>Product, collection and cart customisations, including upsells</li>
+              <li>Third-party app setup and integration</li>
+              <li>Campaign and product landing pages built for conversion</li>
+            </ul>
           </div>
-        </a>
-        <a href="https://github.com/shivambhatt15" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">⌘</span>
-          <div>
-            <span class="contact-link-label">GitHub</span>
-            github.com/shivambhatt15
+          <div class="panel-side">
+            <div><h4>Tools</h4><div class="chips"><span class="chip">Liquid</span><span class="chip">OS 2.0</span><span class="chip">Metafields</span><span class="chip">JavaScript</span><span class="chip">Shopify CLI</span></div></div>
+            <div><h4>Good fit for</h4><p class="ideal">D2C brands launching a new store, or outgrowing a template they’ve stretched too far.</p></div>
           </div>
-        </a>
-        <a href="https://www.linkedin.com/in/shivambhatt1512/" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">in</span>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-wp" aria-labelledby="t-wp" hidden>
           <div>
-            <span class="contact-link-label">LinkedIn</span>
-            linkedin.com/in/shivambhatt1512
+            <h3>WordPress sites your team can actually edit</h3>
+            <p>Custom and child themes built around Advanced Custom Fields, so every page is assembled from flexible blocks instead of fragile page-builder layouts.</p>
+            <ul class="ticks">
+              <li>Custom themes from Figma, with clean PHP templates</li>
+              <li>ACF flexible content: build new pages without code</li>
+              <li>Custom post types for portfolios, case studies and listings</li>
+              <li>Plugin configuration and careful customisation</li>
+              <li>Migration and redesign of older WordPress sites</li>
+            </ul>
           </div>
-        </a>
-        <a href="https://twitter.com/shivam897739369" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">𝕏</span>
-          <div>
-            <span class="contact-link-label">Twitter / X</span>
-            @shivam897739369
+          <div class="panel-side">
+            <div><h4>Tools</h4><div class="chips"><span class="chip">PHP</span><span class="chip">ACF Pro</span><span class="chip">Custom post types</span><span class="chip">MySQL</span></div></div>
+            <div><h4>Good fit for</h4><p class="ideal">Service businesses and agencies who want a fast, editable marketing site.</p></div>
           </div>
-        </a>
-        <a href="https://www.instagram.com/_shivam_1512" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon">◎</span>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-woo" aria-labelledby="t-woo" hidden>
           <div>
-            <span class="contact-link-label">Instagram</span>
-            @_shivam_1512
+            <h3>WooCommerce stores, on-brand end to end</h3>
+            <p>Full WordPress and WooCommerce builds: from product setup to a checkout that feels like part of your brand, not a default template.</p>
+            <ul class="ticks">
+              <li>Product, variation and category setup</li>
+              <li>Custom shop, product, cart and checkout templates</li>
+              <li>Payment gateway and shipping configuration (Razorpay, Stripe, PayPal)</li>
+              <li>Order emails styled to match your brand</li>
+              <li>Ongoing maintenance and updates</li>
+            </ul>
           </div>
-        </a>
-        <div class="contact-link" style="cursor:default">
-          <span class="contact-link-icon">📍</span>
+          <div class="panel-side">
+            <div><h4>Tools</h4><div class="chips"><span class="chip">WooCommerce</span><span class="chip">Template overrides</span><span class="chip">Hooks &amp; filters</span><span class="chip">PHP</span></div></div>
+            <div><h4>Good fit for</h4><p class="ideal">Brands that want full ownership of their store and hosting.</p></div>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-perf" aria-labelledby="t-perf" hidden>
           <div>
-            <span class="contact-link-label">Location</span>
-            Ahmedabad, Gujarat, India
+            <h3>Faster pages, more orders</h3>
+            <p>An audit of your existing Shopify or WordPress site, then the fixes: lighter pages, better Core Web Vitals and layouts that guide visitors to buy.</p>
+            <ul class="ticks">
+              <li>Speed audit with a prioritised list of fixes</li>
+              <li>Image optimisation, lazy loading and lean markup</li>
+              <li>Removing unused app and plugin scripts</li>
+              <li>Clearer product pages: offers, social proof, calls to action</li>
+              <li>Mobile-first layout improvements</li>
+            </ul>
+          </div>
+          <div class="panel-side">
+            <div><h4>Tools</h4><div class="chips"><span class="chip">PageSpeed Insights</span><span class="chip">Lighthouse</span><span class="chip">Core Web Vitals</span></div></div>
+            <div><h4>Good fit for</h4><p class="ideal">Stores with steady traffic but a conversion rate that should be higher.</p></div>
+          </div>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-mag" aria-labelledby="t-mag" hidden>
+          <div>
+            <h3>Magento 2 modules and re-branding</h3>
+            <p>Custom modules that extend store behaviour, and re-branding work across admin and storefront.</p>
+            <ul class="ticks">
+              <li>Custom module development</li>
+              <li>Storefront theme and re-branding changes</li>
+              <li>Database tables and admin configuration</li>
+              <li>Figma to responsive Magento templates</li>
+            </ul>
+          </div>
+          <div class="panel-side">
+            <div><h4>Tools</h4><div class="chips"><span class="chip">Magento 2</span><span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">LESS</span></div></div>
+            <div><h4>Good fit for</h4><p class="ideal">Existing Magento stores that need targeted changes.</p></div>
           </div>
         </div>
       </div>
@@ -1058,94 +631,482 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ───────── WORK ───────── -->
+<section class="section alt" id="work">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>The kind of work I ship</h2>
+      <p>Filter by platform. Ask me for live store links and walkthroughs — some client work is under NDA, so I share it one-to-one.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter work">
+      <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" data-filter="shopify" aria-pressed="false">Shopify</button>
+      <button class="filter" data-filter="wordpress" aria-pressed="false">WordPress</button>
+      <button class="filter" data-filter="woocommerce" aria-pressed="false">WooCommerce</button>
+      <button class="filter" data-filter="magento" aria-pressed="false">Magento 2</button>
+    </div>
+
+    <div class="work-grid" id="workGrid">
+      <article class="work wide" data-cat="shopify">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-store">
+            <div class="blk a hero-b"></div>
+            <div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div>
+            <div class="blk line"></div><div class="blk line"></div><div class="blk line"></div><div class="blk line"></div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">Shopify</span><span>Liquid, OS 2.0, JS</span></div>
+          <h3>Custom theme development</h3>
+          <p>Bespoke themes with reusable sections and metafields, structured so merchants can manage every page themselves.</p>
+        </div>
+      </article>
+
+      <article class="work wide" data-cat="shopify">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-landing">
+            <div class="txt"><div class="blk line" style="width:80%"></div><div class="blk line" style="width:60%"></div><div class="blk line" style="width:70%"></div><div class="blk b" style="height:16px;width:45%;border-radius:999px"></div></div>
+            <div class="blk a"></div>
+            <div class="blk" style="grid-column:1/-1"></div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">Shopify</span><span>Liquid, CRO</span></div>
+          <h3>Conversion landing pages</h3>
+          <p>Fast, mobile-first product and campaign pages built around a clear offer, proof and one strong call to action.</p>
+        </div>
+      </article>
+
+      <article class="work" data-cat="wordpress">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-acf">
+            <div class="blk a"></div>
+            <div class="row"><div class="blk"></div><div class="blk"></div><div class="blk"></div></div>
+            <div class="blk"></div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">WordPress</span><span>ACF, PHP</span></div>
+          <h3>ACF-powered sites</h3>
+          <p>Flexible content blocks that let clients build and edit pages without touching code.</p>
+        </div>
+      </article>
+
+      <article class="work" data-cat="woocommerce wordpress">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-woo">
+            <div class="list"><div class="blk"></div><div class="blk"></div><div class="blk"></div></div>
+            <div class="sum"><div class="blk line"></div><div class="blk line" style="width:70%"></div><div class="blk line" style="width:85%"></div><div class="blk a" style="height:18px;margin-top:auto;border-radius:999px"></div></div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">WooCommerce</span><span>Checkout, payments</span></div>
+          <h3>WooCommerce stores</h3>
+          <p>Product setup, cart, checkout and payment gateways with on-brand templates throughout.</p>
+        </div>
+      </article>
+
+      <article class="work" data-cat="magento">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-mod">
+            <div class="side"><div class="blk line"></div><div class="blk line"></div><div class="blk line b"></div><div class="blk line"></div><div class="blk line"></div></div>
+            <div class="blk"></div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">Magento 2</span><span>PHP, MySQL</span></div>
+          <h3>Custom modules</h3>
+          <p>Extending store functionality and tailoring the admin and storefront to client requirements.</p>
+        </div>
+      </article>
+
+      <article class="work wide" data-cat="shopify wordpress woocommerce">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body m-speed">
+            <div class="gauge" id="gauge">
+              <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45" fill="none" stroke-width="5"/><circle class="ring" cx="50" cy="50" r="45" fill="none" stroke-width="5"/></svg>
+              <b id="gaugeNum">0</b>
+            </div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">Optimisation</span><span>Core Web Vitals</span></div>
+          <h3>Performance optimisation</h3>
+          <p>Speeding up existing Shopify and WordPress sites: lazy loading, image and asset optimisation, lean markup and leaner app scripts.</p>
+        </div>
+      </article>
+
+      <article class="work wide" data-cat="shopify wordpress woocommerce magento">
+        <div class="mock" aria-hidden="true"><div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body" style="grid-template-columns:1fr 1fr;gap:12px">
+            <div class="blk" style="display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--faint);font-size:1.1rem;background:transparent;border:1px dashed var(--line-strong)">Figma</div>
+            <div class="blk a" style="display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--on-accent);font-size:1.1rem">Live store</div>
+          </div></div>
+        <div class="work-info">
+          <div class="work-meta"><span class="pill">Any platform</span><span>Design to code</span></div>
+          <h3>Figma to pixel-accurate build</h3>
+          <p>Your designer’s file turned into a responsive, accessible storefront that matches the design at every breakpoint.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PROCESS ───────── -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>How a project runs</h2>
+      <p>Clear steps, regular updates, and nothing goes live until you’ve signed it off.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Discovery call</h3><p>We go through your goals, references, platform and timeline. You get a written scope and estimate.</p></div>
+      <div class="step"><h3>Design hand-off</h3><p>I work from your Figma, or we agree the layout together before any code is written.</p></div>
+      <div class="step"><h3>Build &amp; review</h3><p>Development on a preview theme or staging site, with progress you can click through at each milestone.</p></div>
+      <div class="step"><h3>Launch &amp; support</h3><p>Go-live checks, speed pass, a short walkthrough video for your team, and support after launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── TOOLKIT ───────── -->
+<div class="toolkit" aria-label="Toolkit">
+  <div class="toolkit-track">
+    <span>Shopify</span><span>Liquid</span><span>WordPress</span><span>WooCommerce</span><span>Advanced Custom Fields</span><span>PHP</span><span>JavaScript</span><span>React</span><span>Magento 2</span><span>MySQL</span><span>Bootstrap 5</span><span>Figma</span><span>Git</span>
+    <span aria-hidden="true">Shopify</span><span aria-hidden="true">Liquid</span><span aria-hidden="true">WordPress</span><span aria-hidden="true">WooCommerce</span><span aria-hidden="true">Advanced Custom Fields</span><span aria-hidden="true">PHP</span><span aria-hidden="true">JavaScript</span><span aria-hidden="true">React</span><span aria-hidden="true">Magento 2</span><span aria-hidden="true">MySQL</span><span aria-hidden="true">Bootstrap 5</span><span aria-hidden="true">Figma</span><span aria-hidden="true">Git</span>
+  </div>
+</div>
+
+<!-- ───────── EXPERIENCE ───────── -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Where I’ve worked</h2>
+      <p>From Magento modules to leading Shopify and WordPress builds at an agency. Tap a role for details.</p>
+    </div>
+
+    <div class="jobs">
+      <article class="job" data-open="true">
+        <div class="job-when"><b>Jun 2023 – present</b>3+ years</div>
+        <div>
+          <h3>Shopify &amp; WordPress Developer</h3>
+          <p class="co">Zero Gravity Communications, Ahmedabad</p>
+          <span class="now"><i></i>Current role</span>
+          <div class="job-detail"><div><ul>
+            <li>Build and customise Shopify stores: custom Liquid themes, OS 2.0 sections, metafields and third-party app integrations</li>
+            <li>Develop WordPress sites with custom themes, ACF layouts and WooCommerce, plus ongoing performance optimisation</li>
+            <li>Convert Figma designs into pixel-perfect, responsive, conversion-focused storefronts and landing pages</li>
+          </ul></div></div>
+        </div>
+        <button class="job-toggle" aria-expanded="true" aria-label="Hide details for Zero Gravity Communications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+      </article>
+
+      <article class="job" data-open="false">
+        <div class="job-when"><b>Jan 2023 – Jun 2023</b>6 months</div>
+        <div>
+          <h3>JavaScript Developer</h3>
+          <p class="co">Felix-IT Systems, Ahmedabad</p>
+          <div class="job-detail"><div><ul>
+            <li>Built interactive front-end features with JavaScript and React, focused on clean OOP structure</li>
+            <li>Created database tables and modules, and worked on re-branding components</li>
+            <li>Handled UI implementation and web design from layout to working interface</li>
+          </ul></div></div>
+        </div>
+        <button class="job-toggle" aria-expanded="false" aria-label="Show details for Felix-IT Systems"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+      </article>
+
+      <article class="job" data-open="false">
+        <div class="job-when"><b>Jan 2022 – Dec 2022</b>1 year</div>
+        <div>
+          <h3>Internship Trainee</h3>
+          <p class="co">Magneto IT Solutions, Ahmedabad</p>
+          <div class="job-detail"><div><ul>
+            <li>Magento 2 module development and re-branding modules</li>
+            <li>Front-end development and CSS, converting Figma layouts into responsive HTML</li>
+            <li>Supported database administration and website design tasks</li>
+          </ul></div></div>
+        </div>
+        <button class="job-toggle" aria-expanded="false" aria-label="Show details for Magneto IT Solutions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg></button>
+      </article>
+    </div>
+
+    <div class="edu"><b>Master of Computer Applications (MCA)</b><span>Education</span></div>
+
+    <div class="cv" style="margin-top:4rem">
+      <div>
+        <h2>The one-page version</h2>
+        <p>Experience, skills and contact details in a clean PDF — ready to forward to your team or hiring manager.</p>
+      </div>
+      <div class="cv-actions">
+        <a class="btn btn-solid" href="resume.pdf" download="Shivam-Bhatt-Resume.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>Download PDF
+        </a>
+        <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">View in browser</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── PLANNER ───────── -->
+<section class="section alt" id="planner">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Tell me about your project</h2>
+      <p>Answer a few quick questions and your brief writes itself. Send it straight to my inbox — I reply within one working day.</p>
+    </div>
+
+    <div class="planner">
+      <form class="plan-form" id="planForm" onsubmit="return false">
+        <fieldset class="q">
+          <legend>Which platform?</legend>
+          <div class="opts" data-group="platform">
+            <label class="opt"><input type="radio" name="platform" value="Shopify"><span>Shopify</span></label>
+            <label class="opt"><input type="radio" name="platform" value="WordPress"><span>WordPress</span></label>
+            <label class="opt"><input type="radio" name="platform" value="WooCommerce"><span>WooCommerce</span></label>
+            <label class="opt"><input type="radio" name="platform" value="Magento 2"><span>Magento 2</span></label>
+            <label class="opt"><input type="radio" name="platform" value="Not sure yet"><span>Not sure yet</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend>What do you need?<small>Choose any</small></legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="need" value="New store or site"><span>New store or site</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="Custom theme"><span>Custom theme</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="Landing page"><span>Landing page</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="Redesign"><span>Redesign</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="Speed optimisation"><span>Speed optimisation</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="App or plugin integration"><span>App or plugin integration</span></label>
+            <label class="opt"><input type="checkbox" name="need" value="Ongoing support"><span>Ongoing support</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend>Timeline</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="timeline" value="As soon as possible"><span>As soon as possible</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="2–4 weeks"><span>2–4 weeks</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="1–2 months"><span>1–2 months</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="Flexible"><span>Flexible</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="q">
+          <legend>Do you have designs?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="design" value="Yes, Figma is ready"><span>Yes, Figma is ready</span></label>
+            <label class="opt"><input type="radio" name="design" value="References only"><span>References only</span></label>
+            <label class="opt"><input type="radio" name="design" value="Need help with design"><span>Need help with design</span></label>
+          </div>
+        </fieldset>
+
+        <div class="two">
+          <div class="q"><label class="lbl" for="pName">Your name</label><input class="field" id="pName" name="name" autocomplete="name" placeholder="Jane Cooper"></div>
+          <div class="q"><label class="lbl" for="pSite">Current site<small>Optional</small></label><input class="field" id="pSite" name="site" placeholder="yourstore.com"></div>
+        </div>
+        <div class="q"><label class="lbl" for="pNote">Anything else?<small>Optional</small></label><textarea class="field" id="pNote" name="note" placeholder="Goals, reference sites, budget range…"></textarea></div>
+      </form>
+
+      <aside class="brief" aria-live="polite">
+        <h3>Your brief</h3>
+        <dl>
+          <div><dt>Platform</dt><dd id="bPlatform" class="empty">Not chosen yet</dd></div>
+          <div><dt>Needs</dt><dd id="bNeeds" class="empty">Not chosen yet</dd></div>
+          <div><dt>Timeline</dt><dd id="bTimeline" class="empty">Not chosen yet</dd></div>
+          <div><dt>Designs</dt><dd id="bDesign" class="empty">Not chosen yet</dd></div>
+        </dl>
+        <a class="btn btn-solid" id="sendBrief" href="mailto:shivam.bhatt1512@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>Email this brief
+        </a>
+        <button class="btn btn-ghost" id="copyBrief">Copy brief</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FAQ ───────── -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="head reveal"><h2>Questions clients ask</h2><p>If yours isn’t here, send it over — happy to answer before you commit to anything.</p></div>
+    <div class="faq">
+      <details open><summary>Do you work with clients outside India?</summary><p>Yes. I work remotely with brands anywhere, keep overlapping hours with UK, EU and US time zones, and communicate over email, Slack, WhatsApp or video calls — whichever your team prefers.</p></details>
+      <details><summary>Can you edit my existing theme instead of starting over?</summary><p>Usually, yes. I’ll review your current Shopify theme or WordPress setup first and tell you honestly whether it’s worth extending or cheaper to rebuild.</p></details>
+      <details><summary>Will I be able to update the site myself?</summary><p>That’s the point of how I build. Shopify sections and ACF blocks are set up so you can change text, images and layout without code, and you get a short walkthrough video at launch.</p></details>
+      <details><summary>How do you price projects?</summary><p>Fixed price for clearly scoped builds, hourly for ongoing support and small fixes. Send the brief above and I’ll come back with a written estimate.</p></details>
+      <details><summary>What happens after launch?</summary><p>I stay on for fixes after go-live, and can continue on a monthly retainer for new features, landing pages and speed checks.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── CONTACT ───────── -->
+<section class="section alt" id="contact">
+  <div class="wrap contact">
+    <div>
+      <h2>Let’s build your <em>store.</em></h2>
+      <p>Freelance projects, full-time roles and agency collaborations — Shopify themes, WordPress and WooCommerce sites, landing pages and store optimisation.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="mailto:shivam.bhatt1512@gmail.com?subject=Project%20enquiry">Email me</a>
+        <a class="btn btn-ghost" href="resume.pdf" download="Shivam-Bhatt-Resume.pdf">Download resume</a>
+      </div>
+    </div>
+    <ul class="links">
+      <li><a href="mailto:shivam.bhatt1512@gmail.com"><b>shivam.bhatt1512@gmail.com</b><span>Email</span></a></li>
+      <li><a href="https://www.linkedin.com/in/shivambhatt1512/" target="_blank" rel="noopener"><b>LinkedIn</b><span>shivambhatt1512</span></a></li>
+      <li><a href="https://github.com/shivambhatt15" target="_blank" rel="noopener"><b>GitHub</b><span>shivambhatt15</span></a></li>
+      <li><a href="https://twitter.com/shivam897739369" target="_blank" rel="noopener"><b>X / Twitter</b><span>@shivam897739369</span></a></li>
+      <li><a href="https://www.instagram.com/_shivam_1512" target="_blank" rel="noopener"><b>Instagram</b><span>@_shivam_1512</span></a></li>
+      <li><div><b>Ahmedabad, Gujarat, India</b><span>Remote worldwide</span></div></li>
+    </ul>
+  </div>
+</section>
+</main>
+
 <footer>
-  <div class="footer-name">SHIVAM BHATT</div>
-  <div class="footer-note">Designed &amp; Built with ♥ · Ahmedabad</div>
-  <div class="footer-note">Shopify · WordPress · WooCommerce · Liquid</div>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> Shivam Bhatt</span>
+    <span>Shopify, WordPress and WooCommerce development</span>
+  </div>
 </footer>
 
+<button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-// Custom cursor
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EMAIL = 'shivam.bhatt1512@gmail.com';
 
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursor.style.left = mouseX - 6 + 'px';
-  cursor.style.top = mouseY - 6 + 'px';
-});
+  /* toast */
+  const toast = $('#toast'); let tt;
+  const say = msg => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2400); };
+  const copy = async (text, msg) => {
+    try { await navigator.clipboard.writeText(text); say(msg); }
+    catch { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); say(msg); }
+  };
 
-function animateRing() {
-  ringX += (mouseX - ringX - 20) * 0.12;
-  ringY += (mouseY - ringY - 20) * 0.12;
-  cursorRing.style.left = ringX + 'px';
-  cursorRing.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
+  /* palettes */
+  const setPalette = p => {
+    document.documentElement.dataset.palette = p;
+    $$('.swatch').forEach(b => b.setAttribute('aria-pressed', b.dataset.palette === p));
+    try { localStorage.setItem('sb-palette', p); } catch {}
+  };
+  try { const saved = localStorage.getItem('sb-palette'); if (saved) setPalette(saved); } catch {}
+  $$('.swatch').forEach(b => b.addEventListener('click', () => {
+    setPalette(b.dataset.palette);
+    say(`${b.querySelector('.sw-name').innerText.replace(/\s+/g,' ').trim()} palette on`);
+  }));
 
-document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(2)';
-    cursorRing.style.transform = 'scale(1.5)';
-    cursorRing.style.borderColor = 'var(--accent2)';
+  /* hero light follows pointer */
+  const light = $('#heroLight'), hero = $('.hero');
+  if (!reduce) hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    light.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    light.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
   });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'scale(1)';
-    cursorRing.style.transform = 'scale(1)';
-    cursorRing.style.borderColor = 'rgba(124,58,237,0.5)';
+
+  /* nav */
+  const nav = $('#nav'), toTop = $('#toTop');
+  const onScroll = () => { const y = scrollY; nav.classList.toggle('scrolled', y > 20); toTop.classList.toggle('show', y > 900); };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+
+  const menuBtn = $('#menuBtn');
+  const setMenu = open => { document.body.classList.toggle('menu-open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); document.body.style.overflow = open ? 'hidden' : ''; };
+  menuBtn.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  $$('#mobileMenu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* active nav link */
+  const links = $$('.nav-links a');
+  const secObs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  ['services','work','experience','planner','contact'].forEach(id => secObs.observe(document.getElementById(id)));
+
+  /* copy email */
+  $$('[data-copy]').forEach(b => b.addEventListener('click', () => copy(b.dataset.copy, 'Email copied')));
+
+  /* reveal section heads */
+  const rev = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rev.unobserve(e.target); } }), { threshold: .2 });
+  $$('.reveal').forEach(el => rev.observe(el));
+
+  /* counters */
+  const cnt = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; const el = e.target, end = +el.dataset.count, suf = el.textContent.includes('+') ? '+' : '';
+    if (reduce) return cnt.unobserve(el);
+    let n = 0; const t = setInterval(() => { n++; el.textContent = n + suf; if (n >= end) clearInterval(t); }, 160);
+    cnt.unobserve(el);
+  }), { threshold: .6 });
+  $$('[data-count]').forEach(el => cnt.observe(el));
+
+  /* speed gauge */
+  const gauge = $('#gauge'), gNum = $('#gaugeNum');
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (!e.isIntersecting) return; gauge.classList.add('go'); o.disconnect();
+    if (reduce) { gNum.textContent = 92; return; }
+    let n = 0; const t = setInterval(() => { n += 2; gNum.textContent = Math.min(n, 92); if (n >= 92) clearInterval(t); }, 36);
+  }), { threshold: .5 }).observe(gauge);
+
+  /* service tabs (keyboard: arrows) */
+  const tabs = $$('.tab');
+  const showTab = (tab, focus) => {
+    tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      const p = document.getElementById(t.getAttribute('aria-controls')); p.hidden = !on; p.classList.toggle('show', on); });
+    if (focus) tab.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => showTab(t));
+    t.addEventListener('keydown', e => {
+      const k = e.key; let j = null;
+      if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % tabs.length;
+      if (k === 'ArrowUp' || k === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+      if (j !== null) { e.preventDefault(); showTab(tabs[j], true); }
+    });
   });
-});
 
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+  /* work filter */
+  $$('.filter').forEach(f => f.addEventListener('click', () => {
+    $$('.filter').forEach(x => x.setAttribute('aria-pressed', x === f));
+    const v = f.dataset.filter;
+    $$('.work').forEach(w => w.classList.toggle('hide', v !== 'all' && !w.dataset.cat.split(' ').includes(v)));
+  }));
+
+  /* experience accordion */
+  $$('.job').forEach(job => {
+    const btn = $('.job-toggle', job), co = $('.co', job).textContent.split(',')[0];
+    btn.addEventListener('click', () => {
+      const open = job.dataset.open !== 'true';
+      job.dataset.open = open; btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', (open ? 'Hide' : 'Show') + ' details for ' + co);
+    });
   });
-}, { threshold: 0.1 });
 
-reveals.forEach(el => observer.observe(el));
+  /* project planner */
+  const form = $('#planForm');
+  const val = n => (form.querySelector(`[name="${n}"]:checked`) || {}).value || '';
+  const vals = n => $$(`[name="${n}"]:checked`, form).map(i => i.value);
+  const fill = (id, v) => { const d = document.getElementById(id); d.textContent = v || 'Not chosen yet'; d.classList.toggle('empty', !v); };
+  const buildBrief = () => {
+    const name = $('#pName').value.trim(), site = $('#pSite').value.trim(), note = $('#pNote').value.trim();
+    return [
+      'Hi Shivam,', '',
+      'Here’s a quick brief for a project:', '',
+      `Platform: ${val('platform') || '-'}`,
+      `Needs: ${vals('need').join(', ') || '-'}`,
+      `Timeline: ${val('timeline') || '-'}`,
+      `Designs: ${val('design') || '-'}`,
+      site ? `Current site: ${site}` : null,
+      note ? `\nNotes: ${note}` : null,
+      '', `Thanks,`, name || ''
+    ].filter(l => l !== null).join('\n');
+  };
+  const update = () => {
+    fill('bPlatform', val('platform')); fill('bNeeds', vals('need').join(', '));
+    fill('bTimeline', val('timeline')); fill('bDesign', val('design'));
+    const subj = `Project enquiry${val('platform') ? ' – ' + val('platform') : ''}${$('#pName').value.trim() ? ' from ' + $('#pName').value.trim() : ''}`;
+    $('#sendBrief').href = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(buildBrief())}`;
+  };
+  form.addEventListener('input', update); form.addEventListener('change', update); update();
+  $('#copyBrief').addEventListener('click', () => copy(buildBrief(), 'Brief copied — paste it into any message'));
 
-// Smooth nav link
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-// Counter animation on numeric stat nums
-function animateCounter(el, target, suffix = '') {
-  let current = 0;
-  const end = parseInt(target);
-  const step = end / 40;
-  const timer = setInterval(() => {
-    current += step;
-    if (current >= end) { current = end; clearInterval(timer); }
-    el.textContent = Math.floor(current) + suffix;
-  }, 30);
-}
-
-const statNums = document.querySelectorAll('.stat-num');
-const statObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const text = el.textContent.trim();
-      if (text === '4+') animateCounter(el, 4, '+');
-      else if (text === '3') animateCounter(el, 3);
-      statObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-statNums.forEach(el => statObserver.observe(el));
+  $('#year').textContent = new Date().getFullYear();
+})();
 </script>
 </body>
 </html>
