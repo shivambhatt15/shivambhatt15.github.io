@@ -909,9 +909,10 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
           <div><dt>Timeline</dt><dd id="bTimeline" class="empty">Not chosen yet</dd></div>
           <div><dt>Designs</dt><dd id="bDesign" class="empty">Not chosen yet</dd></div>
         </dl>
-        <a class="btn btn-solid" id="sendBrief" href="mailto:shivam.bhatt1512@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>Email this brief
-        </a>
+<a class="btn btn-solid" id="sendGmail" href="#" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>Send via Gmail
+</a>
+<a class="btn btn-ghost" id="sendBrief" href="mailto:shivam.bhatt1512@gmail.com">Other email app</a>
         <button class="btn btn-ghost" id="copyBrief">Copy brief</button>
       </aside>
     </div>
@@ -1101,6 +1102,7 @@ footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);color:var(--faint)
     fill('bTimeline', val('timeline')); fill('bDesign', val('design'));
     const subj = `Project enquiry${val('platform') ? ' – ' + val('platform') : ''}${$('#pName').value.trim() ? ' from ' + $('#pName').value.trim() : ''}`;
     $('#sendBrief').href = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(buildBrief())}`;
+        $('#sendGmail').href = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(buildBrief())}`;
   };
   form.addEventListener('input', update); form.addEventListener('change', update); update();
   $('#copyBrief').addEventListener('click', () => copy(buildBrief(), 'Brief copied — paste it into any message'));
